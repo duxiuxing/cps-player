@@ -105,7 +105,7 @@ class WiiFlow:
         root = tree.getroot()
 
         for game_elem in root.findall("Game"):
-            zip_crc32 = game_elem.get("crc32")
+            zip_crc32 = game_elem.get("crc32").rjust(8, "0")
             zip_title = game_elem.get("zip")
             if zip_title is None:
                 print(f"crc32 = {zip_crc32} 的元素缺少 zip 属性")

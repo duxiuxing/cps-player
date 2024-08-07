@@ -80,6 +80,11 @@
         en="Dungeons &amp; Dragons - Shadow over Mystara"
         zhcn="龙与地下城 暗黑秘影"
     />
+    <Game crc32="09982D0C" bytes="24928785"
+        zip="ddtod"
+        en="Dungeons &amp; Dragons - Tower of Doom"
+        zhcn="龙与地下城 毁灭之塔"
+    />
     <Game crc32="7285E267" bytes="10767264"
         zip="ddtod"
         en="Dungeons &amp; Dragons - Tower of Doom"
@@ -95,12 +100,22 @@
         en="Dimahoo"
         zhcn="疾风魔法大作战"
     />
+    <Game crc32="09CC3D29" bytes="15611435"
+        zip="dstlk"
+        en="Darkstalkers - The Night Warriors"
+        zhcn="恶魔战士 午夜斗士"
+    />
     <Game crc32="F01E92DF" bytes="14911806"
         zip="dstlk"
         en="Darkstalkers - The Night Warriors"
         zhcn="恶魔战士 午夜斗士"
     />
     <Game crc32="52C69D08" bytes="8008976"
+        zip="ecofghtr"
+        en="Eco Fighters"
+        zhcn="环保战士"
+    />
+    <Game crc32="C94842F7" bytes="9059315"
         zip="ecofghtr"
         en="Eco Fighters"
         zhcn="环保战士"
@@ -120,6 +135,11 @@
         en="Jyangokushi - Haoh no Saihai"
         zhcn="雀国志 霸王的采牌"
     />
+    <Game crc32="41315A30" bytes="8312140"
+        zip="megaman2"
+        en="Mega Man 2 - The Power Fighters"
+        zhcn="洛克人2 力量对决"
+    />
     <Game crc32="F41847FF" bytes="7403701"
         zip="megaman2"
         en="Mega Man 2 - The Power Fighters"
@@ -129,6 +149,11 @@
         zip="mmancp2u"
         en="Mega Man - The Power Battle"
         zhcn="洛克人 力量之战"
+    />
+    <Game crc32="70E9233B" bytes="20060838"
+        zip="mmatrix"
+        en="Mars Matrix - Hyper Solid Shooting"
+        zhcn="火星矩阵 终极固体射击"
     />
     <Game crc32="F5B8B434" bytes="19102427"
         zip="mmatrix"
@@ -140,10 +165,20 @@
         en="Mighty! Pang"
         zhcn="超强魔法泡泡"
     />
+    <Game crc32="11C1A352" bytes="21834788"
+        zip="msh"
+        en="Marvel Super Heroes"
+        zhcn="漫威超级英雄"
+    />
     <Game crc32="1C61E7B0" bytes="20099226"
         zip="msh"
         en="Marvel Super Heroes"
         zhcn="漫威超级英雄"
+    />
+    <Game crc32="3740CF4F" bytes="23920908"
+        zip="mshvsf"
+        en="Marvel Super Heroes vs. Street Fighter"
+        zhcn="漫威对街霸"
     />
     <Game crc32="D8A01BB1" bytes="23124813"
         zip="mshvsf"
@@ -151,6 +186,11 @@
         zhcn="漫威对街霸"
     />
     <Game crc32="06A483F9" bytes="22699625"
+        zip="mvsc"
+        en="Marvel vs. Capcom - Clash of Super Heroes"
+        zhcn="漫威对卡普空 超级英雄的碰撞"
+    />
+    <Game crc32="FE7EC7BD" bytes="23628767"
         zip="mvsc"
         en="Marvel vs. Capcom - Clash of Super Heroes"
         zhcn="漫威对卡普空 超级英雄的碰撞"
@@ -185,12 +225,27 @@
         en="Quiz Nanairo Dreams - Nijiirochou no Kiseki"
         zhcn="问答七彩梦 虹色町的奇迹"
     />
-    <Game crc32="221712B" bytes="13008031"
+    <Game crc32="BF737EFB" bytes="7353546"
+        zip="qndream"
+        en="Quiz Nanairo Dreams - Nijiirochou no Kiseki"
+        zhcn="问答七彩梦 虹色町的奇迹"
+    />
+    <Game crc32="0221712B" bytes="13008031"
+        zip="ringdest"
+        en="Ring of Destruction - Slam Masters II"
+        zhcn="摔角霸王2 连环爆裂"
+    />
+    <Game crc32="DC590075" bytes="13332571"
         zip="ringdest"
         en="Ring of Destruction - Slam Masters II"
         zhcn="摔角霸王2 连环爆裂"
     />
     <Game crc32="605DA56F" bytes="7365582"
+        zip="sfa"
+        en="Street Fighter Alpha - Warriors' Dreams"
+        zhcn="少年街霸 斗士的梦想"
+    />
+    <Game crc32="798F7C79" bytes="7917649"
         zip="sfa"
         en="Street Fighter Alpha - Warriors' Dreams"
         zhcn="少年街霸 斗士的梦想"
@@ -220,10 +275,20 @@
         en="Street Fighter Zero 2 Alpha"
         zhcn="少年街霸2 Alpha"
     />
-    <Game crc32="81139C" bytes="16426312"
+    <Game crc32="0081139C" bytes="16426312"
         zip="sgemf"
         en="Super Gem Fighter - Mini Mix"
         zhcn="超级口袋战士"
+    />
+    <Game crc32="2D4C35E3" bytes="16870712"
+        zip="sgemf"
+        en="Super Gem Fighter - Mini Mix"
+        zhcn="超级口袋战士"
+    />
+    <Game crc32="09BA3D7C" bytes="5437272"
+        zip="spf2t"
+        en="Super Puzzle Fighter II Turbo"
+        zhcn="街霸方块2 Turbo"
     />
     <Game crc32="957A7CC3" bytes="5243344"
         zip="spf2t"
@@ -234,6 +299,11 @@
         zip="spf2t"
         en="Super Puzzle Fighter II Turbo"
         zhcn="街霸方块2 Turbo"
+    />
+    <Game crc32="A351857D" bytes="10793461"
+        zip="ssf2"
+        en="Super Street Fighter II - The New Challengers"
+        zhcn="超级街头霸王2 新的挑战者"
     />
     <Game crc32="F152E1CE" bytes="10989355"
         zip="ssf2"
@@ -246,6 +316,11 @@
         zhcn="超级街头霸王2 Turbo"
     />
     <Game crc32="3E966829" bytes="23460253"
+        zip="vhunt2"
+        en="Vampire Hunter 2 - Darkstalkers' Revenge"
+        zhcn="恶魔猎人2"
+    />
+    <Game crc32="8866BA04" bytes="23500502"
         zip="vhunt2"
         en="Vampire Hunter 2 - Darkstalkers' Revenge"
         zhcn="恶魔猎人2"

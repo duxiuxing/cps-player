@@ -35,7 +35,7 @@ class CPS:
             root = tree.getroot()
             for element in root.iter():
                 if element.tag == "Game":
-                    crc32 = element.get("crc32")
+                    crc32 = element.get("crc32").rjust(8, "0")
                     zip = element.get("zip")
                     en = element.get("en")
                     zhcn = element.get("zhcn")
@@ -43,7 +43,19 @@ class CPS:
                     game_info.zip = zip
                     self.crc32_to_game_info[crc32] = game_info
 
-    def list_new_roms(self):
+    def verify_exist_zip_name_as_crc32(self, zip_title):
+        default_zip_path = os.path.join(
+            self.root_folder_path(), f"roms\\{zip_title}.zip")
+        if os.path.exists(default_zip_path):
+            folder_path = os.path.join(
+                self.root_folder_path(), f"roms\\{zip_title}")
+            if not os.path.exists(folder_path):
+                os.makedirs(folder_path)
+            dst_zip_path = os.path.join(
+                folder_path, f"{compute_crc32(default_zip_path)}.zip")
+            os.rename(default_zip_path, dst_zip_path)
+
+    def import_new_roms(self):
         self.init_crc32_to_game_info()
 
         exist_roms_crc32_to_zip = {}
@@ -67,13 +79,30 @@ class CPS:
                 exist_roms_crc32_to_zip[crc32] = file_name
                 continue
 
+            zip_title = str(file_name)[:-4]
+            self.verify_exist_zip_name_as_crc32(zip_title)
+
+            en_title = ""
+            zhcn_title = ""
+            for key, game_info in self.crc32_to_game_info.items():
+                if zip_title == game_info.zip:
+                    en_title = game_info.en
+                    zhcn_title = game_info.zhcn
+                    break
+
             attrib = {
                 "crc32": crc32,
                 "bytes": str(os.stat(file_path).st_size),
-                "zip": str(file_name)[:-4]
+                "zip": zip_title,
+                "en": en_title,
+                "zhcn": zhcn_title
             }
 
             xml_elem = ET.SubElement(xml_root, "Game", attrib)
+
+            dst_file_path = os.path.join(
+                self.root_folder_path(), f"roms\\{zip_title}\\{crc32}.zip")
+            os.rename(file_path, dst_file_path)
             new_roms_count = new_roms_count + 1
 
         for key, value in exist_roms_crc32_to_zip.items():

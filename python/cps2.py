@@ -4,7 +4,7 @@ from cps import CPS
 from wiiflow import WiiFlow
 
 cps2 = CPS(2)
-cps2.list_new_roms()
+cps2.import_new_roms()
 # cps2.check_game_infos()
 
 # wiiflow = WiiFlow("CPS2")
