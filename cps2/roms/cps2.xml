@@ -5,6 +5,11 @@
         en="19XX - The War Against Destiny"
         zhcn="19XX 命运否决战"
     />
+    <Game crc32="E8BD186D" bytes="8493875"
+        zip="19xx"
+        en="19XX - The War Against Destiny"
+        zhcn="19XX 命运否决战"
+    />
     <Game crc32="E4F8629E" bytes="15448245"
         zip="1944"
         en="1944 - The Loop Master"
@@ -15,10 +20,25 @@
         en="Armored Warriors"
         zhcn="装甲战士"
     />
+    <Game crc32="CC9AE578" bytes="15556468"
+        zip="armwar"
+        en="Armored Warriors"
+        zhcn="装甲战士"
+    />
+    <Game crc32="1C1776E9" bytes="11139858"
+        zip="avsp"
+        en="Alien VS Predator"
+        zhcn="异形对铁血战士"
+    />
     <Game crc32="D305E26D" bytes="10447340"
         zip="avsp"
         en="Alien VS Predator"
         zhcn="异形对铁血战士"
+    />
+    <Game crc32="DA1FE7FB" bytes="12115164"
+        zip="batcir"
+        en="Battle Circuit"
+        zhcn="战斗回路"
     />
     <Game crc32="E159FBD2" bytes="11310221"
         zip="batcir"
@@ -30,6 +50,11 @@
         en="Janpai Puzzle Choukou"
         zhcn="益智麻将牌 长江"
     />
+    <Game crc32="7C97695E" bytes="6764980"
+        zip="csclub"
+        en="Capcom Sports Club"
+        zhcn="卡普空运动俱乐部"
+    />
     <Game crc32="FB74069D" bytes="6317480"
         zip="csclub"
         en="Capcom Sports Club"
@@ -40,7 +65,17 @@
         en="Cyberbots - Fullmetal Madness"
         zhcn="机甲战士 全金属狂潮"
     />
+    <Game crc32="BEE7EBF9" bytes="20787867"
+        zip="cybots"
+        en="Cyberbots - Fullmetal Madness"
+        zhcn="机甲战士 全金属狂潮"
+    />
     <Game crc32="1918306F" bytes="16975283"
+        zip="ddsom"
+        en="Dungeons &amp; Dragons - Shadow over Mystara"
+        zhcn="龙与地下城 暗黑秘影"
+    />
+    <Game crc32="2BEF2BD3" bytes="18024231"
         zip="ddsom"
         en="Dungeons &amp; Dragons - Shadow over Mystara"
         zhcn="龙与地下城 暗黑秘影"
@@ -49,6 +84,11 @@
         zip="ddtod"
         en="Dungeons &amp; Dragons - Tower of Doom"
         zhcn="龙与地下城 毁灭之塔"
+    />
+    <Game crc32="4A9B133B" bytes="15085887"
+        zip="dimahoo"
+        en="Dimahoo"
+        zhcn="疾风魔法大作战"
     />
     <Game crc32="C331DF3C" bytes="14623662"
         zip="dimahoo"
@@ -110,10 +150,20 @@
         en="Marvel Super Heroes vs. Street Fighter"
         zhcn="漫威对街霸"
     />
+    <Game crc32="06A483F9" bytes="22699625"
+        zip="mvsc"
+        en="Marvel vs. Capcom - Clash of Super Heroes"
+        zhcn="漫威对卡普空 超级英雄的碰撞"
+    />
     <Game crc32="0ABD0CF5" bytes="22699760"
         zip="mvscu"
         en="Marvel vs. Capcom - Clash of Super Heroes"
         zhcn="漫威对卡普空 超级英雄的碰撞"
+    />
+    <Game crc32="30569A65" bytes="20884718"
+        zip="nwarr"
+        en="Night Warriors - Darkstalkers' Revenge"
+        zhcn="恶魔猎人"
     />
     <Game crc32="5466529F" bytes="20124050"
         zip="nwarr"
@@ -145,10 +195,20 @@
         en="Street Fighter Alpha - Warriors' Dreams"
         zhcn="少年街霸 斗士的梦想"
     />
+    <Game crc32="9C410357" bytes="14330856"
+        zip="sfa2"
+        en="Street Fighter Alpha 2"
+        zhcn="少年街霸2"
+    />
     <Game crc32="BA856118" bytes="13688796"
         zip="sfa2"
         en="Street Fighter Alpha 2"
         zhcn="少年街霸2"
+    />
+    <Game crc32="B9296F16" bytes="31592210"
+        zip="sfa3"
+        en="Street Fighter Alpha 3"
+        zhcn="少年街霸3"
     />
     <Game crc32="D02703D7" bytes="23349541"
         zip="sfa3"
@@ -164,6 +224,11 @@
         zip="sgemf"
         en="Super Gem Fighter - Mini Mix"
         zhcn="超级口袋战士"
+    />
+    <Game crc32="957A7CC3" bytes="5243344"
+        zip="spf2t"
+        en="Super Puzzle Fighter II Turbo"
+        zhcn="街霸方块2 Turbo"
     />
     <Game crc32="C77F02AA" bytes="5431791"
         zip="spf2t"
