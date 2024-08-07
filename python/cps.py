@@ -13,7 +13,8 @@ def compute_crc32(file_path):
     with open(file_path, 'rb') as file:
         data = file.read()
         crc = zlib.crc32(data)
-        return hex(crc & 0xFFFFFFFF)[2:].upper()
+        crc32 = hex(crc & 0xFFFFFFFF)[2:].upper()
+        return crc32.rjust(8, "0")
 
 
 class CPS:
@@ -94,14 +95,14 @@ class CPS:
         self.init_crc32_to_game_info()
 
         wiiflow = WiiFlow(self.name.upper())
-        wiiflow.init_zip_crc32_to_game_id()        
+        wiiflow.init_zip_crc32_to_game_id()
         wiiflow.init_game_id_to_info()
 
         for crc32, game_info in self.crc32_to_game_info.items():
             id = ""
             if game_info.zip in wiiflow.zip_crc32_to_game_id.keys():
                 id = wiiflow.zip_crc32_to_game_id[game_info.zip]
-            elif crc32 not in wiiflow.zip_crc32_to_game_id.keys():
+            elif crc32 in wiiflow.zip_crc32_to_game_id.keys():
                 id = wiiflow.zip_crc32_to_game_id[crc32]
             else:
                 print(f"crc32 = {crc32} 不在 ini 文件中，zhcn = {game_info.zhcn}")
@@ -109,9 +110,13 @@ class CPS:
             if id in wiiflow.game_id_to_info.keys():
                 wii_game_info = wiiflow.game_id_to_info[id]
                 if wii_game_info.en != game_info.en:
-                    print(f"{game_info.en} 不匹配 Wii 的 {wii_game_info.en}")
+                    print("en 属性不匹配")
+                    print(f"\t{game_info.en} 在 {self.name}.xml")
+                    print(f"\t{wii_game_info.en} 在 {self.name.upper()}.xml")
 
                 if wii_game_info.zhcn != game_info.zhcn:
-                    print(f"{game_info.zhcn} 不匹配 Wii 的 {wii_game_info.zhcn}")
+                    print("zhcn 属性不匹配")
+                    print(f"\t{game_info.zhcn} 在 {self.name}.xml")
+                    print(f"\t{wii_game_info.zhcn} 在 {self.name.upper()}.xml")
             else:
                 print(f"id = {id} 不在 xml 文件中，zhcn = {game_info.zhcn}")

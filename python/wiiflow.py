@@ -54,7 +54,8 @@ class WiiFlow:
                 game_id = values[0]
                 self.zip_crc32_to_game_id[zip_title] = game_id
                 for index in range(1, len(values)):
-                    self.zip_crc32_to_game_id[values[index]] = game_id
+                    self.zip_crc32_to_game_id[values[index].rjust(
+                        8, "0")] = game_id
 
     # 根据 <plugin_name>.xml 的内容构造 game_id 到 GameInfo 的字典
     def init_game_id_to_info(self):
@@ -144,9 +145,12 @@ class WiiFlow:
         if not create_folder_if_not_exist(dst_roms_folder_path):
             return
 
+        # SD:\\roms\\<plugin_name>
+        dst_folder_path = os.path.join(dst_roms_folder_path, self.plugin_name)
+        if not create_folder_if_not_exist(dst_folder_path):
+            return
         for zip_title, src_zip_path in self.zip_title_to_path.items():
-            dst_zip_path = os.path.join(
-                dst_roms_folder_path, f"{zip_title}.zip")
+            dst_zip_path = os.path.join(dst_folder_path, f"{zip_title}.zip")
             if not os.path.exists(dst_zip_path):
                 shutil.copyfile(src_zip_path, dst_zip_path)
 
