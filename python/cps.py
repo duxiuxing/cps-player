@@ -20,13 +20,13 @@ def compute_crc32(file_path):
 class CPS:
     def __init__(self, version_number):
         self.name = f"cps{version_number}"
-        self.crc32_to_game_info = {}
+        self.zip_crc32_to_game_info = {}
 
     def root_folder_path(self):
         return os.path.join(LocalConfigs.REPOSITORY_FOLDER, self.name)
 
     def init_crc32_to_game_info(self):
-        if len(self.crc32_to_game_info) > 0:
+        if len(self.zip_crc32_to_game_info) > 0:
             return
         xml_file_path = os.path.join(
             self.root_folder_path(), f"roms\\{self.name}.xml")
@@ -41,7 +41,7 @@ class CPS:
                     zhcn_title = element.get("zhcn")
                     game_info = GameInfo(en_title, zhcn_title)
                     game_info.zip_title = zip_title
-                    self.crc32_to_game_info[zip_crc32] = game_info
+                    self.zip_crc32_to_game_info[zip_crc32] = game_info
 
     def verify_exist_zip_name_as_crc32(self, zip_title):
         folder_path = os.path.join(
@@ -76,7 +76,7 @@ class CPS:
                 continue
 
             crc32 = compute_crc32(file_path)
-            if crc32 in self.crc32_to_game_info.keys():
+            if crc32 in self.zip_crc32_to_game_info.keys():
                 exist_roms_crc32_to_zip[crc32] = file_name
                 continue
 
@@ -85,7 +85,7 @@ class CPS:
 
             en_title = ""
             zhcn_title = ""
-            for key, game_info in self.crc32_to_game_info.items():
+            for key, game_info in self.zip_crc32_to_game_info.items():
                 if zip_title == game_info.zip_title:
                     en_title = game_info.en_title
                     zhcn_title = game_info.zhcn_title
@@ -128,7 +128,7 @@ class CPS:
         wiiflow.init_zip_crc32_to_game_id()
         wiiflow.init_game_id_to_info()
 
-        for zip_crc32, game_info in self.crc32_to_game_info.items():
+        for zip_crc32, game_info in self.zip_crc32_to_game_info.items():
             id = ""
             if game_info.zip_title in wiiflow.zip_crc32_to_game_id.keys():
                 id = wiiflow.zip_crc32_to_game_id[game_info.zip_title]

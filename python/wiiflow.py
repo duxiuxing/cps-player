@@ -154,6 +154,38 @@ class WiiFlow:
             if not os.path.exists(dst_zip_path):
                 shutil.copyfile(src_zip_path, dst_zip_path)
 
+    # 根据 <plugin_name>.ini 的内容构造创建空白的 .zip 文件
+    def export_fake_roms(self, sdcard_path):
+        ini_file_path = os.path.join(
+            LocalConfigs.REPOSITORY_FOLDER,
+            f"{self.plugin_name}\\wiiflow\\plugins_data\\{self.plugin_name}\\{self.plugin_name}.ini")
+
+        if not os.path.exists(ini_file_path):
+            print(f"{ini_file_path} 不存在")
+            return
+
+        if not verify_folder_exist(sdcard_path):
+            return
+
+        # SD:\\fake_roms
+        dst_roms_folder_path = os.path.join(sdcard_path, "fake_roms")
+        if not create_folder_if_not_exist(dst_roms_folder_path):
+            return
+
+        # SD:\\roms\\<plugin_name>
+        dst_folder_path = os.path.join(dst_roms_folder_path, self.plugin_name)
+        if not create_folder_if_not_exist(dst_folder_path):
+            return
+
+        ini_parser = ConfigParser()
+        ini_parser.read(ini_file_path)
+        if ini_parser.has_section(self.plugin_name):
+            for zip_title in ini_parser[self.plugin_name]:
+                dst_zip_path = os.path.join(
+                    dst_folder_path, f"{zip_title}.zip")
+                if not os.path.exists(dst_zip_path):
+                    open(dst_zip_path, "w").close()
+
     def export_boxcovers(self, sdcard_path):
         if not verify_folder_exist(sdcard_path):
             return
@@ -331,7 +363,7 @@ class WiiFlow:
             else:
                 print(f"源文件缺失：{src_file_path}")
 
-    def export_to(self, sdcard_path):
+    def export_all(self, sdcard_path):
         if not verify_folder_exist(sdcard_path):
             return
 

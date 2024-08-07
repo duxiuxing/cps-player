@@ -1,0 +1,11 @@
+cps1/new_roms/*
+cps1/wiiflow/log_cachecreate.txt
+
+cps2/new_roms/*
+cps2/wiiflow/log_cachecreate.txt
+
+cps3/new_roms/*
+cps3/wiiflow/log_cachecreate.txt
+
+python/__pycache__/*
+
