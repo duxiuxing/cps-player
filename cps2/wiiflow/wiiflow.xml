@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Game-List name="wiiflow-cps2">
+    <Game crc32="95ABA6EF" zip="19xx"
+        zhcn="19XX 命运否决战"
+    />
+    <Game crc32="E4F8629E" zip="1944"
+        zhcn="1944 循环的征服者"
+    />
+    <Game crc32="510EAF32" zip="armwar"
+        zhcn="装甲战士"
+    />
+    <Game crc32="D305E26D" zip="avsp"
+        zhcn="异形对铁血战士"
+    />
+    <Game crc32="E159FBD2" zip="batcir"
+        zhcn="战斗回路"
+    />
+    <Game crc32="EC8F0B0A" zip="choko"
+        zhcn="益智麻将牌 长江"
+    />
+    <Game crc32="FB74069D" zip="csclub"
+        zhcn="卡普空运动俱乐部"
+    />
+    <Game crc32="453E6327" zip="cybots"
+        zhcn="机甲战士 全金属狂潮"
+    />
+    <Game crc32="1918306F" zip="ddsom"
+        zhcn="龙与地下城 暗黑秘影"
+    />
+    <Game crc32="7285E267" zip="ddtod"
+        zhcn="龙与地下城 毁灭之塔"
+    />
+    <Game crc32="C331DF3C" zip="dimahoo"
+        zhcn="疾风魔法大作战"
+    />
+    <Game crc32="F01E92DF" zip="dstlk"
+        zhcn="恶魔战士 午夜斗士"
+    />
+    <Game crc32="52C69D08" zip="ecofghtr"
+        zhcn="环保战士"
+    />
+    <Game crc32="23B4DB69" zip="gigawing"
+        zhcn="雷鸟之翼"
+    />
+    <Game crc32="F68BEFC2" zip="hsf2"
+        zhcn="超级街头霸王2 十五周年纪念版"
+    />
+    <Game crc32="16B53A0B" zip="jyangoku"
+        zhcn="雀国志 霸王的采牌"
+    />
+    <Game crc32="F41847FF" zip="megaman2"
+        zhcn="洛克人2 力量对决"
+    />
+    <Game crc32="C58CA29D" zip="mmancp2u"
+        zhcn="洛克人 力量之战"
+    />
+    <Game crc32="F5B8B434" zip="mmatrix"
+        zhcn="火星矩阵 终极固体射击"
+    />
+    <Game crc32="A370819E" zip="mpang"
+        zhcn="超强魔法泡泡"
+    />
+    <Game crc32="1C61E7B0" zip="msh"
+        zhcn="漫威超级英雄"
+    />
+    <Game crc32="D8A01BB1" zip="mshvsf"
+        zhcn="漫威对街霸"
+    />
+    <Game crc32="0ABD0CF5" zip="mvscu"
+        zhcn="漫威对卡普空 超级英雄的碰撞"
+    />
+    <Game crc32="5466529F" zip="nwarr"
+        zhcn="恶魔猎人"
+    />
+    <Game crc32="9D287276" zip="progear"
+        zhcn="逆转之岚"
+    />
+    <Game crc32="4224A6CA" zip="pzloop2"
+        zhcn="旋转泡泡2"
+    />
+    <Game crc32="25674607" zip="qndream"
+        zhcn="问答七彩梦 虹色町的奇迹"
+    />
+    <Game crc32="221712B" zip="ringdest"
+        zhcn="摔角霸王2 连环爆裂"
+    />
+    <Game crc32="605DA56F" zip="sfa"
+        zhcn="少年街霸 斗士的梦想"
+    />
+    <Game crc32="BA856118" zip="sfa2"
+        zhcn="少年街霸2"
+    />
+    <Game crc32="D02703D7" zip="sfa3"
+        zhcn="少年街霸3"
+    />
+    <Game crc32="D1E2C381" zip="sfz2al"
+        zhcn="少年街霸2 Alpha"
+    />
+    <Game crc32="81139C" zip="sgemf"
+        zhcn="超级口袋战士"
+    />
+    <Game crc32="C77F02AA" zip="spf2t"
+        zhcn="街霸方块2 Turbo"
+    />
+    <Game crc32="F152E1CE" zip="ssf2"
+        zhcn="超级街头霸王2 新的挑战者"
+    />
+    <Game crc32="D2D45FD7" zip="ssf2t"
+        zhcn="超级街头霸王2 Turbo"
+    />
+    <Game crc32="3E966829" zip="vhunt2"
+        zhcn="恶魔猎人2"
+    />
+    <Game crc32="8C79F64B" zip="vsav"
+        zhcn="恶魔战士"
+    />
+    <Game crc32="370B8957" zip="vsav2"
+        zhcn="恶魔战士2"
+    />
+    <Game crc32="289E6362" zip="xmcota"
+        zhcn="X战警 磁场原子人"
+    />
+    <Game crc32="5678098E" zip="xmvsf"
+        zhcn="X战警对街霸"
+    />
+</Game-List>
