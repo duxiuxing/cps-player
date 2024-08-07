@@ -1,5 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Game-List name="cps1" rom-exists="true">
+    <Game crc32="1137866C" bytes="7136062"
+        zip="3wonders"
+        en="Three Wonders"
+        zhcn="三个奇迹"
+    />
     <Game crc32="6DABA1FD" bytes="2479890"
         zip="3wonders"
         en="Three Wonders"
@@ -10,7 +15,17 @@
         en="1941 - Counter Attack"
         zhcn="1941 反击战"
     />
+    <Game crc32="8C733532" bytes="1620686"
+        zip="1941"
+        en="1941 - Counter Attack"
+        zhcn="1941 反击战"
+    />
     <Game crc32="B88E3F19" bytes="2540718"
+        zip="captcomm"
+        en="Captain Commando"
+        zhcn="名将"
+    />
+    <Game crc32="EA7E1415" bytes="3319342"
         zip="captcomm"
         en="Captain Commando"
         zhcn="名将"
@@ -19,6 +34,16 @@
         zip="cawing"
         en="Carrier Air Wing"
         zhcn="雌虎战机"
+    />
+    <Game crc32="F765B422" bytes="2842794"
+        zip="cawing"
+        en="Carrier Air Wing"
+        zhcn="雌虎战机"
+    />
+    <Game crc32="1C79BFC6" bytes="1755380"
+        zip="cworld2j"
+        en="Adventure Quiz Capcom World 2"
+        zhcn="卡普空世界冒险问答2"
     />
     <Game crc32="86324F66" bytes="1753431"
         zip="cworld2j"
@@ -30,20 +55,45 @@
         en="Cadillacs and Dinosaurs"
         zhcn="恐龙快打"
     />
+    <Game crc32="9D4C25FB" bytes="4945638"
+        zip="dino"
+        en="Cadillacs and Dinosaurs"
+        zhcn="恐龙快打"
+    />
+    <Game crc32="84BBEFF4" bytes="4617093"
+        zip="dynwar"
+        en="Dynasty Wars"
+        zhcn="三国志 王朝战争"
+    />
     <Game crc32="B629FF5E" bytes="2193318"
         zip="dynwar"
         en="Dynasty Wars"
         zhcn="三国志 王朝战争"
+    />
+    <Game crc32="2F7A6B78" bytes="3174271"
+        zip="ffight"
+        en="Final Fight"
+        zhcn="快打旋风"
     />
     <Game crc32="981C6248" bytes="1429616"
         zip="ffight"
         en="Final Fight"
         zhcn="快打旋风"
     />
+    <Game crc32="5FF85EFF" bytes="2308233"
+        zip="forgottn"
+        en="Forgotten Worlds"
+        zhcn="失落的世界"
+    />
     <Game crc32="D6273E55" bytes="1936299"
         zip="forgottn"
         en="Forgotten Worlds"
         zhcn="失落的世界"
+    />
+    <Game crc32="07BD3CC9" bytes="2954444"
+        zip="ghouls"
+        en="Ghouls'n Ghosts"
+        zhcn="大魔界村"
     />
     <Game crc32="6CFB871E" bytes="1608335"
         zip="ghouls"
@@ -55,6 +105,16 @@
         en="Knights of the Round"
         zhcn="圆桌骑士"
     />
+    <Game crc32="D51BB161" bytes="3024362"
+        zip="knights"
+        en="Knights of the Round"
+        zhcn="圆桌骑士"
+    />
+    <Game crc32="4D890A7E" bytes="5559389"
+        zip="kod"
+        en="The King Of Dragons"
+        zhcn="龙王战士"
+    />
     <Game crc32="D37F11FA" bytes="2361330"
         zip="kod"
         en="The King Of Dragons"
@@ -65,25 +125,55 @@
         en="Muscle Bomber Duo - Ultimate Team Battle"
         zhcn="摔角霸王 最终之战"
     />
+    <Game crc32="80AF3039" bytes="7534746"
+        zip="mbombrd"
+        en="Muscle Bomber Duo - Ultimate Team Battle"
+        zhcn="摔角霸王 最终之战"
+    />
+    <Game crc32="8EA0236D" bytes="3736106"
+        zip="megaman"
+        en="Mega Man - The Power Battle"
+        zhcn="洛克人 力量之战"
+    />
     <Game crc32="D569F323" bytes="3301559"
         zip="megaman"
         en="Mega Man - The Power Battle"
         zhcn="洛克人 力量之战"
+    />
+    <Game crc32="410A3A4D" bytes="3015705"
+        zip="mercs"
+        en="Mercs"
+        zhcn="战场之狼2"
     />
     <Game crc32="7F0F6AE0" bytes="1754001"
         zip="mercs"
         en="Mercs"
         zhcn="战场之狼2"
     />
+    <Game crc32="3E384DAF" bytes="3055783"
+        zip="msword"
+        en="Magic Sword - Heroic Fantasy"
+        zhcn="魔法剑 英雄的幻想"
+    />
     <Game crc32="F330F19E" bytes="1440356"
         zip="msword"
         en="Magic Sword - Heroic Fantasy"
         zhcn="魔法剑 英雄的幻想"
     />
+    <Game crc32="43DB05B7" bytes="2667907"
+        zip="mtwins"
+        en="Mega Twins"
+        zhcn="双麒儿"
+    />
     <Game crc32="A6D453A8" bytes="1435133"
         zip="mtwins"
         en="Mega Twins"
         zhcn="双麒儿"
+    />
+    <Game crc32="69C2ECD4" bytes="2497684"
+        zip="nemo"
+        en="Nemo"
+        zhcn="梦幻冒险"
     />
     <Game crc32="9A85ACB2" bytes="1340361"
         zip="nemo"
@@ -95,10 +185,25 @@
         en="Pang! 3"
         zhcn="魔法气泡3"
     />
+    <Game crc32="31324395" bytes="1676421"
+        zip="pang3"
+        en="Pang! 3"
+        zhcn="魔法气泡3"
+    />
     <Game crc32="4C8F7631" bytes="767349"
         zip="pnickj"
         en="Pnickies"
         zhcn="魔法方块"
+    />
+    <Game crc32="67BEFE44" bytes="764089"
+        zip="pnickj"
+        en="Pnickies"
+        zhcn="魔法方块"
+    />
+    <Game crc32="0F95138A" bytes="4877913"
+        zip="punisher"
+        en="The Punisher"
+        zhcn="惩罚者"
     />
     <Game crc32="ED7E3054" bytes="4041564"
         zip="punisher"
@@ -110,15 +215,35 @@
         en="Quiz &amp; Dragons - Capcom Quiz Game"
         zhcn="龙之迷题"
     />
+    <Game crc32="CE39FAB2" bytes="2512685"
+        zip="qad"
+        en="Quiz &amp; Dragons - Capcom Quiz Game"
+        zhcn="龙之迷题"
+    />
+    <Game crc32="0A136471" bytes="1945027"
+        zip="qtono2"
+        en="Quiz Tonosama no Yabou 2 - Zenkoku-ban"
+        zhcn="城主的野心问答2 全国版"
+    />
     <Game crc32="F0143859" bytes="1944984"
         zip="qtono2j"
         en="Quiz Tonosama no Yabou 2 - Zenkoku-ban"
         zhcn="城主的野心问答2 全国版"
     />
+    <Game crc32="1F314D05" bytes="8903809"
+        zip="sf2"
+        en="Street Fighter II - The World Warrior"
+        zhcn="街头霸王2 天下斗士"
+    />
     <Game crc32="CB828384" bytes="3551365"
         zip="sf2"
         en="Street Fighter II - The World Warrior"
         zhcn="街头霸王2 天下斗士"
+    />
+    <Game crc32="1C1A2872" bytes="15691728"
+        zip="sf2ce"
+        en="Street Fighter II' - Champion Edition"
+        zhcn="街头霸王2 四大天王"
     />
     <Game crc32="27ED89F8" bytes="3584793"
         zip="sf2ce"
@@ -140,15 +265,35 @@
         en="Street Fighter Zero"
         zhcn="少年街霸"
     />
+    <Game crc32="A50C1481" bytes="6806712"
+        zip="sfzch"
+        en="Street Fighter Zero"
+        zhcn="少年街霸"
+    />
+    <Game crc32="5204FD14" bytes="8698921"
+        zip="slammast"
+        en="Saturday Night Slam Masters"
+        zhcn="摔角霸王"
+    />
     <Game crc32="88884103" bytes="6588010"
         zip="slammast"
         en="Saturday Night Slam Masters"
         zhcn="摔角霸王"
     />
+    <Game crc32="80D2C80F" bytes="4416345"
+        zip="strider"
+        en="Strider"
+        zhcn="出击飞龙"
+    />
     <Game crc32="A25D03EE" bytes="6542528"
         zip="strider"
         en="Strider"
         zhcn="出击飞龙"
+    />
+    <Game crc32="503508F6" bytes="2341298"
+        zip="unsquad"
+        en="U.N. Squadron"
+        zhcn="战区88"
     />
     <Game crc32="8F04B6BA" bytes="1273568"
         zip="unsquad"
@@ -160,12 +305,27 @@
         en="Varth - Operation Thunderstorm"
         zhcn="威虎战机 雷暴行动"
     />
+    <Game crc32="80E51946" bytes="3992275"
+        zip="varth"
+        en="Varth - Operation Thunderstorm"
+        zhcn="威虎战机 雷暴行动"
+    />
+    <Game crc32="5AD7AC2A" bytes="1980944"
+        zip="willow"
+        en="Willow"
+        zhcn="威洛之旅"
+    />
     <Game crc32="9BCF6255" bytes="1773820"
         zip="willow"
         en="Willow"
         zhcn="威洛之旅"
     />
     <Game crc32="72F653DA" bytes="3927125"
+        zip="wof"
+        en="Warriors of Fate"
+        zhcn="三国志2 赤壁之战"
+    />
+    <Game crc32="770E74C8" bytes="8154375"
         zip="wof"
         en="Warriors of Fate"
         zhcn="三国志2 赤壁之战"
