@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<datafile xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="wiitdb.xsd">
+	<WiiTDB version="201812061554" games="6"/>
+	<game name="JoJo's Bizarre Adventure">
+		<id>800703</id>
+	<locale lang="EN">
+	<title>JoJo's Bizarre Adventure</title>
+	<genre>Fight,Fight / Versus</genre>
+	</locale>
+	<locale lang="ZHCN">
+		<title>乔乔的奇妙冒险</title>
+	</locale>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<date year="1998" month="" day=""/>
+		<rating type="NOTE" value="16">
+		</rating>
+		<input players="2">
+			<control type="wiimote" required="true"/>
+			<control type="nunchuk" required="false"/>
+			<control type="classiccontroller" required="false"/>
+			<control type="gamecube" required="false"/>
+		</input>
+	</game>
+	<game name="JoJo's Bizarre Adventure - Heritage for the Future">
+		<id>800704</id>
+	<locale lang="EN">
+	<title>JoJo's Bizarre Adventure - Heritage for the Future</title>
+	<genre>Fight,Fight / Versus</genre>
+	</locale>
+	<locale lang="ZHCN">
+		<title>乔乔的奇妙冒险 未来遗产</title>
+	</locale>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<date year="1999" month="" day=""/>
+		<rating type="NOTE" value="16">
+		</rating>
+		<input players="2">
+			<control type="wiimote" required="true"/>
+			<control type="nunchuk" required="false"/>
+			<control type="classiccontroller" required="false"/>
+			<control type="gamecube" required="false"/>
+		</input>
+	</game>
+	<game name="Red Earth">
+		<id>800705</id>
+	<locale lang="EN">
+	<title>Red Earth</title>
+	<genre>Fight,Fight / Versus</genre>
+	</locale>
+	<locale lang="ZHCN">
+		<title>赤色大地</title>
+	</locale>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<date year="1996" month="" day=""/>
+		<rating type="NOTE" value="16">
+		</rating>
+		<input players="2">
+			<control type="wiimote" required="true"/>
+			<control type="nunchuk" required="false"/>
+			<control type="classiccontroller" required="false"/>
+			<control type="gamecube" required="false"/>
+		</input>
+	</game>
+	<game name="Street Fighter III - New Generation">
+		<id>800706</id>
+	<locale lang="EN">
+	<title>Street Fighter III - New Generation</title>
+	<genre>Fight,Fight / Versus</genre>
+	</locale>
+	<locale lang="ZHCN">
+		<title>街头霸王3 新纪元</title>
+	</locale>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<date year="1997" month="" day=""/>
+		<rating type="NOTE" value="16">
+		</rating>
+		<input players="2">
+			<control type="wiimote" required="true"/>
+			<control type="nunchuk" required="false"/>
+			<control type="classiccontroller" required="false"/>
+			<control type="gamecube" required="false"/>
+		</input>
+	</game>
+	<game name="Street Fighter III 2nd Impact - Giant Attack">
+		<id>800707</id>
+	<locale lang="EN">
+	<title>Street Fighter III 2nd Impact - Giant Attack</title>
+	<genre>Fight,Fight / Versus</genre>
+	</locale>
+	<locale lang="ZHCN">
+		<title>街头霸王3.2 巨型打击</title>
+	</locale>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<date year="1997" month="" day=""/>
+		<rating type="NOTE" value="16">
+		</rating>
+		<input players="2">
+			<control type="wiimote" required="true"/>
+			<control type="nunchuk" required="false"/>
+			<control type="classiccontroller" required="false"/>
+			<control type="gamecube" required="false"/>
+		</input>
+	</game>
+	<game name="Street Fighter III 3rd Strike - Fight for the Future">
+		<id>800708</id>
+	<locale lang="EN">
+	<title>Street Fighter III 3rd Strike - Fight for the Future</title>
+	<genre>Fight,Fight / Versus</genre>
+	</locale>
+	<locale lang="ZHCN">
+		<title>街头霸王3.3 未来战斗</title>
+	</locale>
+		<developer>Capcom</developer>
+		<publisher>Capcom</publisher>
+		<date year="1999" month="" day=""/>
+		<rating type="NOTE" value="16">
+		</rating>
+		<input players="2">
+			<control type="wiimote" required="true"/>
+			<control type="nunchuk" required="false"/>
+			<control type="classiccontroller" required="false"/>
+			<control type="gamecube" required="false"/>
+		</input>
+	</game>
+</datafile>
