@@ -45,6 +45,11 @@
         en="Battle Circuit"
         zhcn="战斗回路"
     />
+    <Game crc32="7F3978EC" bytes="14166404"
+        zip="batcirj"
+        en="Battle Circuit"
+        zhcn="战斗回路"
+    />
     <Game crc32="EC8F0B0A" bytes="4937868"
         zip="choko"
         en="Janpai Puzzle Choukou"
@@ -57,6 +62,11 @@
     />
     <Game crc32="FB74069D" bytes="6317480"
         zip="csclub"
+        en="Capcom Sports Club"
+        zhcn="卡普空运动俱乐部"
+    />
+    <Game crc32="A64A1155" bytes="7874454"
+        zip="cscluba"
         en="Capcom Sports Club"
         zhcn="卡普空运动俱乐部"
     />
@@ -195,6 +205,11 @@
         en="Marvel vs. Capcom - Clash of Super Heroes"
         zhcn="漫威对卡普空 超级英雄的碰撞"
     />
+    <Game crc32="93A612F7" bytes="24107722"
+        zip="mvscj"
+        en="Marvel vs. Capcom - Clash of Super Heroes"
+        zhcn="漫威对卡普空 超级英雄的碰撞"
+    />
     <Game crc32="0ABD0CF5" bytes="22699760"
         zip="mvscu"
         en="Marvel vs. Capcom - Clash of Super Heroes"
@@ -325,6 +340,11 @@
         en="Vampire Hunter 2 - Darkstalkers' Revenge"
         zhcn="恶魔猎人2"
     />
+    <Game crc32="64EE5C67" bytes="24061771"
+        zip="vsav"
+        en="Vampire Savior - The Lord of Vampire"
+        zhcn="恶魔战士"
+    />
     <Game crc32="8C79F64B" bytes="23417228"
         zip="vsav"
         en="Vampire Savior - The Lord of Vampire"
@@ -335,12 +355,22 @@
         en="Vampire Savior 2 - The Lord of Vampire"
         zhcn="恶魔战士2"
     />
+    <Game crc32="87FAF31B" bytes="24100394"
+        zip="vsav2"
+        en="Vampire Savior 2 - The Lord of Vampire"
+        zhcn="恶魔战士2"
+    />
     <Game crc32="289E6362" bytes="22653508"
         zip="xmcota"
         en="X-Men - Children of the Atom"
         zhcn="X战警 磁场原子人"
     />
     <Game crc32="5678098E" bytes="26768168"
+        zip="xmvsf"
+        en="X-Men vs. Street Fighter"
+        zhcn="X战警对街霸"
+    />
+    <Game crc32="99A53974" bytes="20198987"
         zip="xmvsf"
         en="X-Men vs. Street Fighter"
         zhcn="X战警对街霸"

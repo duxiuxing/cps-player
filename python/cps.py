@@ -35,22 +35,23 @@ class CPS:
             root = tree.getroot()
             for element in root.iter():
                 if element.tag == "Game":
-                    crc32 = element.get("crc32").rjust(8, "0")
-                    zip = element.get("zip")
-                    en = element.get("en")
-                    zhcn = element.get("zhcn")
-                    game_info = GameInfo(en, zhcn)
-                    game_info.zip = zip
-                    self.crc32_to_game_info[crc32] = game_info
+                    zip_crc32 = element.get("crc32").rjust(8, "0")
+                    zip_title = element.get("zip")
+                    en_title = element.get("en")
+                    zhcn_title = element.get("zhcn")
+                    game_info = GameInfo(en_title, zhcn_title)
+                    game_info.zip_title = zip_title
+                    self.crc32_to_game_info[zip_crc32] = game_info
 
     def verify_exist_zip_name_as_crc32(self, zip_title):
+        folder_path = os.path.join(
+            self.root_folder_path(), f"roms\\{zip_title}")
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
+
         default_zip_path = os.path.join(
             self.root_folder_path(), f"roms\\{zip_title}.zip")
         if os.path.exists(default_zip_path):
-            folder_path = os.path.join(
-                self.root_folder_path(), f"roms\\{zip_title}")
-            if not os.path.exists(folder_path):
-                os.makedirs(folder_path)
             dst_zip_path = os.path.join(
                 folder_path, f"{compute_crc32(default_zip_path)}.zip")
             os.rename(default_zip_path, dst_zip_path)
@@ -85,9 +86,9 @@ class CPS:
             en_title = ""
             zhcn_title = ""
             for key, game_info in self.crc32_to_game_info.items():
-                if zip_title == game_info.zip:
-                    en_title = game_info.en
-                    zhcn_title = game_info.zhcn
+                if zip_title == game_info.zip_title:
+                    en_title = game_info.en_title
+                    zhcn_title = game_info.zhcn_title
                     break
 
             attrib = {
@@ -127,25 +128,29 @@ class CPS:
         wiiflow.init_zip_crc32_to_game_id()
         wiiflow.init_game_id_to_info()
 
-        for crc32, game_info in self.crc32_to_game_info.items():
+        for zip_crc32, game_info in self.crc32_to_game_info.items():
             id = ""
-            if game_info.zip in wiiflow.zip_crc32_to_game_id.keys():
-                id = wiiflow.zip_crc32_to_game_id[game_info.zip]
-            elif crc32 in wiiflow.zip_crc32_to_game_id.keys():
-                id = wiiflow.zip_crc32_to_game_id[crc32]
+            if game_info.zip_title in wiiflow.zip_crc32_to_game_id.keys():
+                id = wiiflow.zip_crc32_to_game_id[game_info.zip_title]
+            elif zip_crc32 in wiiflow.zip_crc32_to_game_id.keys():
+                id = wiiflow.zip_crc32_to_game_id[zip_crc32]
             else:
-                print(f"crc32 = {crc32} 不在 ini 文件中，zhcn = {game_info.zhcn}")
+                print(
+                    f"crc32 = {zip_crc32} 不在 {wiiflow.plugin_name}.ini 文件中，zhcn = {game_info.zhcn_title}")
                 continue
             if id in wiiflow.game_id_to_info.keys():
                 wii_game_info = wiiflow.game_id_to_info[id]
-                if wii_game_info.en != game_info.en:
+                if wii_game_info.en_title != game_info.en_title:
                     print("en 属性不匹配")
-                    print(f"\t{game_info.en} 在 {self.name}.xml")
-                    print(f"\t{wii_game_info.en} 在 {self.name.upper()}.xml")
+                    print(f"\t{game_info.en_title} 在 {self.name}.xml")
+                    print(
+                        f"\t{wii_game_info.en_title} 在 {wiiflow.plugin_name}.xml")
 
-                if wii_game_info.zhcn != game_info.zhcn:
+                if wii_game_info.zhcn_title != game_info.zhcn_title:
                     print("zhcn 属性不匹配")
-                    print(f"\t{game_info.zhcn} 在 {self.name}.xml")
-                    print(f"\t{wii_game_info.zhcn} 在 {self.name.upper()}.xml")
+                    print(f"\t{game_info.zhcn_title} 在 {self.name}.xml")
+                    print(
+                        f"\t{wii_game_info.zhcn_title} 在 {wiiflow.plugin_name}.xml")
             else:
-                print(f"id = {id} 不在 xml 文件中，zhcn = {game_info.zhcn}")
+                print(
+                    f"id = {id} 不在 {wiiflow.plugin_name}.xml 文件中，zhcn = {game_info.zhcn_title}")
