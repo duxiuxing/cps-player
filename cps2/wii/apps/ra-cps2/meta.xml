@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<app version="1">
+  <name>RA-SS CPS2</name>
+  <author>SuperrSonic</author>
+  <version>0.2.97.30</version>
+  <release_date>2022</release_date>
+  <short_description>An improved version of RA-Wii</short_description> 
+  <long_description>- From RetroArch-Hexaeco;
+
+- FBA Cores CPS2 v0.2.97.30;
+
+- Mod By RunningSnakes and R-Sam.</long_description>
+  <ahb_access/>
+</app>
