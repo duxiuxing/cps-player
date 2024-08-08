@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<app version="1">
+  <name>RA-SS CPS1</name>
+  <author>SuperrSonic</author>
+  <version>0.2.97.28</version>
+  <release_date>2022</release_date>
+  <short_description>An improved version of RA-Wii</short_description> 
+  <long_description>- From RetroArch-Hexaeco;
+
+- FB Alpha 2012 CPS-1 v0.2.97.28;
+
+- Mod By RunningSnakes and R-Sam.</long_description>
+  <ahb_access/>
+</app>
