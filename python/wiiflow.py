@@ -284,13 +284,14 @@ class WiiFlow:
         src_folder_path = os.path.join(
             LocalConfigs.REPOSITORY_FOLDER, f"{self.plugin_name}\\wiiflow\\plugins\\R-Sam\\{self.plugin_name}")
 
-        file_list = ["boot.dol", "config.ini", "sound.ogg"]
-        for file in file_list:
+        file_tuple = ("boot.dol", "config.ini", "sound.ogg")
+        for file in file_tuple:
             src_file_path = os.path.join(src_folder_path, file)
             if os.path.exists(src_file_path):
                 dst_file_path = os.path.join(dst_folder_path, file)
-                if not os.path.exists(dst_file_path):
-                    shutil.copyfile(src_file_path, dst_file_path)
+                if os.path.exists(dst_file_path):
+                    os.remove(dst_file_path)
+                shutil.copyfile(src_file_path, dst_file_path)
             else:
                 print(f"源文件缺失：{src_file_path}")
 
@@ -318,13 +319,14 @@ class WiiFlow:
         src_folder_path = os.path.join(
             LocalConfigs.REPOSITORY_FOLDER, f"{self.plugin_name}\\wiiflow\\plugins_data\\{self.plugin_name}")
 
-        file_list = [f"{self.plugin_name}.ini", f"{self.plugin_name}.xml"]
-        for file in file_list:
+        file_tuple = (f"{self.plugin_name}.ini", f"{self.plugin_name}.xml")
+        for file in file_tuple:
             src_file_path = os.path.join(src_folder_path, file)
             if os.path.exists(src_file_path):
                 dst_file_path = os.path.join(dst_folder_path, file)
-                if not os.path.exists(dst_file_path):
-                    shutil.copyfile(src_file_path, dst_file_path)
+                if os.path.exists(dst_file_path):
+                    os.remove(dst_file_path)
+                shutil.copyfile(src_file_path, dst_file_path)
             else:
                 print(f"源文件缺失：{src_file_path}")
 

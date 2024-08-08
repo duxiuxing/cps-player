@@ -1,6 +1,7 @@
 # -- coding: UTF-8 --
 
 import os
+import shutil
 import xml.etree.ElementTree as ET
 import zlib
 
@@ -15,6 +16,41 @@ def compute_crc32(file_path):
         crc = zlib.crc32(data)
         crc32 = hex(crc & 0xFFFFFFFF)[2:].upper()
         return crc32.rjust(8, "0")
+
+
+def create_folder_if_not_exists(folder_full_path):
+    folder_path = ""
+    for folder_name in folder_full_path.split("\\"):
+        if folder_path == "":
+            folder_path = folder_name
+            if not os.path.exists(folder_path):
+                return False
+        else:
+            if not os.path.exists(folder_path):
+                return False
+            folder_path = f"{folder_path}\\{folder_name}"
+            if not os.path.exists(folder_path):
+                os.mkdir(folder_path)
+    return os.path.exists(folder_full_path)
+
+
+def copy_folder(src, dst):
+    if not create_folder_if_not_exists(dst):
+        return
+    for item in os.listdir(src):
+        s = os.path.join(src, item)
+        d = os.path.join(dst, item)
+        if os.path.isdir(s):
+            copy_folder(s, d)
+        elif not os.path.exists(d):
+            shutil.copy2(s, d)
+
+
+def copy_file(src, dst):
+    if not create_folder_if_not_exists(os.path.dirname(dst)):
+        return
+    if not os.path.exists(dst):
+        shutil.copy2(src, dst)
 
 
 class CPS:
@@ -154,3 +190,49 @@ class CPS:
             else:
                 print(
                     f"id = {id} 不在 {wiiflow.plugin_name}.xml 文件中，zhcn = {game_info.zhcn_title}")
+
+    def export_wii_app(self, file_tuple, sdcard_path):
+        wii_folder_path = os.path.join(self.root_folder_path(), "wii")
+        for item in file_tuple:
+            src_path = os.path.join(wii_folder_path, item)
+            dst_path = os.path.join(sdcard_path, item)
+
+            if not os.path.exists(src_path):
+                print(f"源文件缺失：{src_path}")
+                continue
+
+            if os.path.isdir(src_path):
+                copy_folder(src_path, dst_path)
+            elif os.path.isfile(src_path):
+                copy_file(src_path, dst_path)
+
+    def main_menu(self, sdcard_path, wii_app_file_tuple):
+        plugin_name = self.name.upper()
+        while True:
+            print("\n\n请输入数字序号，选择要执行的操作：")
+            print(f"\t1. 导入新游戏 {self.name}.import_new_roms()")
+            print(f"\t2. 检查游戏信息 {self.name}.check_game_infos()")
+            print("\t3. 转换封面图片 WiiFlow.convert_wfc_files()")
+            print("\t4. 导出 WiiFlow 的文件 WiiFlow.export_all()")
+            print("\t5. 导出空白的.zip文件 WiiFlow.export_fake_roms()")
+            print(f"\t6. 导出 Wii APP 的文件 {self.name}.export_wii_app()")
+            print("\t7. 退出程序")
+
+            input_value = str(input("Enter the version number: "))
+            if input_value == "1":
+                self.import_new_roms()
+            elif input_value == "2":
+                self.check_game_infos()
+            elif input_value == "3":
+                wiiflow = WiiFlow(plugin_name)
+                wiiflow.convert_wfc_files()
+            elif input_value == "4":
+                wiiflow = WiiFlow(plugin_name)
+                wiiflow.export_all(sdcard_path)
+            elif input_value == "5":
+                wiiflow = WiiFlow(plugin_name)
+                wiiflow.export_fake_roms(sdcard_path)
+            elif input_value == "6":
+                self.export_wii_app(wii_app_file_tuple, sdcard_path)
+            elif input_value == "7":
+                break
