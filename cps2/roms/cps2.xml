@@ -225,6 +225,11 @@
         en="Mega Man 2 - The Power Fighters"
         zhcn="洛克人2 力量对决"
     />
+    <Game crc32="C5F7D569" bytes="9005238"
+        zip="megaman2"
+        en="Mega Man 2 - The Power Fighters"
+        zhcn="洛克人2 力量对决"
+    />
     <Game crc32="C9A8DAC3" bytes="8543625"
         zip="megaman2"
         en="Mega Man 2 - The Power Fighters"
@@ -244,6 +249,16 @@
         zip="mmancp2u"
         en="Mega Man - The Power Battle"
         zhcn="洛克人 力量之战"
+    />
+    <Game crc32="DC4FA6D6" bytes="6299996"
+        zip="mmancp2u"
+        en="Mega Man - The Power Battle"
+        zhcn="洛克人 力量之战"
+    />
+    <Game crc32="3ABA5007" bytes="20089209"
+        zip="mmatrix"
+        en="Mars Matrix - Hyper Solid Shooting"
+        zhcn="火星矩阵 终极固体射击"
     />
     <Game crc32="70E9233B" bytes="20060838"
         zip="mmatrix"
@@ -265,10 +280,20 @@
         en="Mighty! Pang"
         zhcn="超强魔法泡泡"
     />
+    <Game crc32="145E6048" bytes="11490982"
+        zip="mpang"
+        en="Mighty! Pang"
+        zhcn="超强魔法泡泡"
+    />
     <Game crc32="A370819E" bytes="5572178"
         zip="mpang"
         en="Mighty! Pang"
         zhcn="超强魔法泡泡"
+    />
+    <Game crc32="0358841C" bytes="89142"
+        zip="msh"
+        en="Marvel Super Heroes"
+        zhcn="漫威超级英雄"
     />
     <Game crc32="11C1A352" bytes="21834788"
         zip="msh"
@@ -286,6 +311,11 @@
         zhcn="漫威超级英雄"
     />
     <Game crc32="3740CF4F" bytes="23920908"
+        zip="mshvsf"
+        en="Marvel Super Heroes vs. Street Fighter"
+        zhcn="漫威对街霸"
+    />
+    <Game crc32="44AFE89E" bytes="115234"
         zip="mshvsf"
         en="Marvel Super Heroes vs. Street Fighter"
         zhcn="漫威对街霸"
@@ -340,6 +370,16 @@
         en="Night Warriors - Darkstalkers' Revenge"
         zhcn="恶魔猎人"
     />
+    <Game crc32="BA386518" bytes="600606"
+        zip="nwarr"
+        en="Night Warriors - Darkstalkers' Revenge"
+        zhcn="恶魔猎人"
+    />
+    <Game crc32="7CC321C1" bytes="15097149"
+        zip="progear"
+        en="Progear"
+        zhcn="逆转之岚"
+    />
     <Game crc32="9D287276" bytes="13800476"
         zip="progear"
         en="Progear"
@@ -355,12 +395,22 @@
         en="Puzz Loop 2"
         zhcn="旋转泡泡2"
     />
+    <Game crc32="7D682521" bytes="11691463"
+        zip="pzloop2"
+        en="Puzz Loop 2"
+        zhcn="旋转泡泡2"
+    />
     <Game crc32="EB2C628E" bytes="11694318"
         zip="pzloop2"
         en="Puzz Loop 2"
         zhcn="旋转泡泡2"
     />
     <Game crc32="25674607" bytes="6925942"
+        zip="qndream"
+        en="Quiz Nanairo Dreams - Nijiirochou no Kiseki"
+        zhcn="问答七彩梦 虹色町的奇迹"
+    />
+    <Game crc32="621481AA" bytes="6937128"
         zip="qndream"
         en="Quiz Nanairo Dreams - Nijiirochou no Kiseki"
         zhcn="问答七彩梦 虹色町的奇迹"
