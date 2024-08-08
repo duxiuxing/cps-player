@@ -120,6 +120,11 @@
         en="The King Of Dragons"
         zhcn="龙王战士"
     />
+    <Game crc32="63533F40" bytes="7535204"
+        zip="mbombrd"
+        en="Muscle Bomber Duo - Ultimate Team Battle"
+        zhcn="摔角霸王 最终之战"
+    />
     <Game crc32="6D38D56F" bytes="6508943"
         zip="mbombrd"
         en="Muscle Bomber Duo - Ultimate Team Battle"
@@ -130,6 +135,11 @@
         en="Muscle Bomber Duo - Ultimate Team Battle"
         zhcn="摔角霸王 最终之战"
     />
+    <Game crc32="66BAC1DA" bytes="3735559"
+        zip="megaman"
+        en="Mega Man - The Power Battle"
+        zhcn="洛克人 力量之战"
+    />
     <Game crc32="8EA0236D" bytes="3736106"
         zip="megaman"
         en="Mega Man - The Power Battle"
@@ -139,6 +149,11 @@
         zip="megaman"
         en="Mega Man - The Power Battle"
         zhcn="洛克人 力量之战"
+    />
+    <Game crc32="386AC874" bytes="537091"
+        zip="mercs"
+        en="Mercs"
+        zhcn="战场之狼2"
     />
     <Game crc32="410A3A4D" bytes="3015705"
         zip="mercs"
@@ -155,12 +170,22 @@
         en="Magic Sword - Heroic Fantasy"
         zhcn="魔法剑 英雄的幻想"
     />
+    <Game crc32="96E9A068" bytes="3304618"
+        zip="msword"
+        en="Magic Sword - Heroic Fantasy"
+        zhcn="魔法剑 英雄的幻想"
+    />
     <Game crc32="F330F19E" bytes="1440356"
         zip="msword"
         en="Magic Sword - Heroic Fantasy"
         zhcn="魔法剑 英雄的幻想"
     />
     <Game crc32="43DB05B7" bytes="2667907"
+        zip="mtwins"
+        en="Mega Twins"
+        zhcn="双麒儿"
+    />
+    <Game crc32="9D93C837" bytes="2925071"
         zip="mtwins"
         en="Mega Twins"
         zhcn="双麒儿"
@@ -180,6 +205,11 @@
         en="Nemo"
         zhcn="梦幻冒险"
     />
+    <Game crc32="C58266D2" bytes="2733847"
+        zip="nemo"
+        en="Nemo"
+        zhcn="梦幻冒险"
+    />
     <Game crc32="1F1290B3" bytes="1536929"
         zip="pang3"
         en="Pang! 3"
@@ -190,7 +220,17 @@
         en="Pang! 3"
         zhcn="魔法气泡3"
     />
+    <Game crc32="9CC10E52" bytes="1678834"
+        zip="pang3"
+        en="Pang! 3"
+        zhcn="魔法气泡3"
+    />
     <Game crc32="4C8F7631" bytes="767349"
+        zip="pnickj"
+        en="Pnickies"
+        zhcn="魔法方块"
+    />
+    <Game crc32="5C74B44A" bytes="772142"
         zip="pnickj"
         en="Pnickies"
         zhcn="魔法方块"
@@ -205,6 +245,11 @@
         en="The Punisher"
         zhcn="惩罚者"
     />
+    <Game crc32="320E04A6" bytes="2195966"
+        zip="punisher"
+        en="The Punisher"
+        zhcn="惩罚者"
+    />
     <Game crc32="ED7E3054" bytes="4041564"
         zip="punisher"
         en="The Punisher"
@@ -215,12 +260,22 @@
         en="Quiz &amp; Dragons - Capcom Quiz Game"
         zhcn="龙之迷题"
     />
+    <Game crc32="689108AD" bytes="2512894"
+        zip="qad"
+        en="Quiz &amp; Dragons - Capcom Quiz Game"
+        zhcn="龙之迷题"
+    />
     <Game crc32="CE39FAB2" bytes="2512685"
         zip="qad"
         en="Quiz &amp; Dragons - Capcom Quiz Game"
         zhcn="龙之迷题"
     />
     <Game crc32="0A136471" bytes="1945027"
+        zip="qtono2"
+        en="Quiz Tonosama no Yabou 2 - Zenkoku-ban"
+        zhcn="城主的野心问答2 全国版"
+    />
+    <Game crc32="9D5C62E6" bytes="1943787"
         zip="qtono2"
         en="Quiz Tonosama no Yabou 2 - Zenkoku-ban"
         zhcn="城主的野心问答2 全国版"
