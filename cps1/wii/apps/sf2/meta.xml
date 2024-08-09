@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<app version="1">
+  <name>Street Fighter II</name>
+  <author>R-Sam</author>
+  <version>1.0</version>
+  <release_date>2024</release_date>
+  <short_description>CPS1 Arcade</short_description> 
+  <long_description>- Name: Street Fighter II - The World Warrior
+- GameID: 42982A
+- Developer &amp; Publisher: Capcom
+- Genre: Fight,Fight / Versus
+- Released: 1991
+- Players: 2
+
+* boot.dol is from RA-SS CPS1</long_description>
+  <arguments>
+    <arg>sd:/roms/cps1</arg>
+    <arg>sf2.zip</arg>
+    <arg>sd:/private/C1MOD/boot.dol.cfg</arg>
+  </arguments>
+  <ahb_access/>
+</app>
