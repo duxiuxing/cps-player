@@ -191,11 +191,11 @@ class CPS:
                 print(
                     f"id = {id} 不在 {wiiflow.plugin_name}.xml 文件中，zhcn = {game_info.zhcn_title}")
 
-    def export_wii_app(self, file_tuple, sdcard_path):
+    def export_wii_app(self, files_tuple):
         wii_folder_path = os.path.join(self.root_folder_path(), "wii")
-        for item in file_tuple:
-            src_path = os.path.join(wii_folder_path, item)
-            dst_path = os.path.join(sdcard_path, item)
+        for relative_path in files_tuple:
+            src_path = os.path.join(wii_folder_path, relative_path)
+            dst_path = os.path.join(LocalConfigs.SDCARD_ROOT, relative_path)
 
             if not os.path.exists(src_path):
                 print(f"源文件缺失：{src_path}")
@@ -206,7 +206,7 @@ class CPS:
             elif os.path.isfile(src_path):
                 copy_file(src_path, dst_path)
 
-    def main_menu(self, sdcard_path, wii_app_file_tuple):
+    def main_menu(self, wii_app_files_tuple):
         plugin_name = self.name.upper()
         while True:
             print("\n\n请输入数字序号，选择要执行的操作：")
@@ -228,11 +228,11 @@ class CPS:
                 wiiflow.convert_wfc_files()
             elif input_value == "4":
                 wiiflow = WiiFlow(plugin_name)
-                wiiflow.export_all(sdcard_path)
+                wiiflow.export_all()
             elif input_value == "5":
                 wiiflow = WiiFlow(plugin_name)
-                wiiflow.export_fake_roms(sdcard_path)
+                wiiflow.export_fake_roms()
             elif input_value == "6":
-                self.export_wii_app(wii_app_file_tuple, sdcard_path)
+                self.export_wii_app(wii_app_files_tuple)
             elif input_value == "7":
                 break

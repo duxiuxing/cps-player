@@ -2,7 +2,7 @@
 
 from cps import CPS
 
-wii_app_file_tuple = (
+wii_app_files_tuple = (
     "apps\\ra-cps3\\overlays",
     "apps\\ra-cps3\\boot.dol",
     "apps\\ra-cps3\\icon.png",
@@ -13,4 +13,4 @@ wii_app_file_tuple = (
 )
 
 cps3 = CPS(3)
-cps3.main_menu("D:\\sdcard", wii_app_file_tuple)
+cps3.main_menu(wii_app_files_tuple)
