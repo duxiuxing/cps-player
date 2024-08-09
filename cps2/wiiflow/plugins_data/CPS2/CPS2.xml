@@ -38,7 +38,7 @@
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="19xx - The War Against Destiny">
+	<game name="19XX - The War Against Destiny">
 		<id>37386A</id>
 	<locale lang="EN">
 	<title>19XX - The War Against Destiny</title>
@@ -75,10 +75,10 @@
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="Alien Vs Predator">
+	<game name="Alien vs. Predator">
 		<id>37388A</id>
 	<locale lang="EN">
-	<title>Alien VS Predator</title>
+	<title>Alien vs. Predator</title>
 	<synopsis>San Drad, California, has been overrun by the Aliens, and the cybernetically-enhanced Major Dutch Schaefer and Lieutenant Linn Kurosawa have been abandoned by their superiors and are cornered by a swarm of the Alien drones. Before they can be killed, a pair of the Predators appear and destroy the Aliens. The Predators offer an alliance with the two humans in order to stop the Alien infestation.
 
 The players take control of up to three of four characters: Dutch, Linn, a Predator hunter, and a Predator warrior, and battle the Aliens through several environments. In the process, the characters discover that the Alien presence on Earth is the result of an experiment headed by a renegade General Bush of the U.S. Colonial Marines in conjunction with the Weyland-Yutani corporation. They destroy the Alien hive by crashing a military ship into San Drad, causing a huge explosion. The Predator warrior then gives his wrist blades to Dutch and Linn in recognition of their skills as warriors, before the Predators depart back into space.</synopsis>
@@ -310,7 +310,7 @@ Tienes 5 personajes: Cyber Blue, un cazarrecompensas humano con accesorios ciber
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="Dungeons And Dragons - Shadow Over Mystara">
+	<game name="Dungeons &amp; Dragons - Shadow over Mystara">
 		<id>37392A</id>
 	<locale lang="EN">
 	<title>Dungeons &amp; Dragons - Shadow over Mystara</title>
@@ -343,7 +343,7 @@ Tienes 5 personajes: Cyber Blue, un cazarrecompensas humano con accesorios ciber
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="Dungeons And Dragons - Tower Of Doom">
+	<game name="Dungeons &amp; Dragons - Tower of Doom">
 		<id>37393A</id>
 	<locale lang="EN">
 	<title>Dungeons &amp; Dragons - Tower of Doom</title>
@@ -531,7 +531,7 @@ If the game is lost, upon continuing the player may select to attempt to clear t
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="Jyangokushi - Haoh No Saihai">
+	<game name="Jyangokushi - Haoh no Saihai">
 		<id>41934A</id>
 	<locale lang="EN">
 	<title>Jyangokushi - Haoh no Saihai</title>
@@ -597,7 +597,7 @@ Dans Mars Matrix, pas de power ups, mais un système d'expérience qui permet de
 	<genre>Shoot'em Up / Vertical,Shoot'em Up</genre>
 	</locale>
 	<locale lang="ZHCN">
-		<title>火星矩阵 终极固体射击</title>
+		<title>弹丸地狱</title>
 	</locale>
 		<developer>Takumi</developer>
 		<publisher>Takumi</publisher>
@@ -646,7 +646,7 @@ Dans Mars Matrix, pas de power ups, mais un système d'expérience qui permet de
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="Marvel Super Heroes Vs. Street Fighter">
+	<game name="Marvel Super Heroes vs. Street Fighter">
 		<id>37402A</id>
 	<locale lang="EN">
 	<title>Marvel Super Heroes vs. Street Fighter</title>
@@ -682,7 +682,7 @@ Dans Mars Matrix, pas de power ups, mais un système d'expérience qui permet de
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="Marvel Vs. Capcom - Clash Of Super Heroes">
+	<game name="Marvel vs. Capcom - Clash of Super Heroes">
 		<id>37403A</id>
 	<locale lang="EN">
 	<title>Marvel vs. Capcom - Clash of Super Heroes</title>
@@ -827,7 +827,7 @@ Le mode « Tour du monde » fait voyager le joueur à travers différentes régi
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="Night Warriors / Vampire Hunter - Darkstalkers' Revenge">
+	<game name="Night Warriors - Darkstalkers' Revenge">
 		<id>44387A</id>
 	<locale lang="EN">
 	<title>Night Warriors - Darkstalkers' Revenge</title>
@@ -954,7 +954,7 @@ Le joueur doit se frayer un chemin parmi les labyrinthes formés par les tirs en
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="Quiz Nanairo Dreams - Nijiirochou No Kiseki">
+	<game name="Quiz Nanairo Dreams - Nijiirochou no Kiseki">
 		<id>42597A</id>
 	<locale lang="EN">
 	<title>Quiz Nanairo Dreams - Nijiirochou no Kiseki</title>
@@ -990,7 +990,7 @@ Le joueur doit se frayer un chemin parmi les labyrinthes formés par les tirs en
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="Ring Of Destruction - Slam Masters II">
+	<game name="Ring of Destruction - Slam Masters II">
 		<id>42766A</id>
 	<locale lang="EN">
 	<title>Ring of Destruction - Slam Masters II</title>
@@ -1332,7 +1332,7 @@ Super Street Fighter II: The New Challengers est aussi connu sous le nom de Supe
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="Super Street Fighter 2 Turbo">
+	<game name="Super Street Fighter II Turbo">
 		<id>37413A</id>
 	<locale lang="EN">
 	<title>Super Street Fighter II Turbo</title>
@@ -1372,7 +1372,7 @@ Super Turbo introduced several new play mechanics to the game system from the pr
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="Vampire / Darkstalkers - The Night Warriors">
+	<game name="Darkstalkers - The Night Warriors">
 		<id>41049A</id>
 	<locale lang="EN">
 	<title>Darkstalkers - The Night Warriors</title>
@@ -1457,7 +1457,7 @@ Quant à l'autre nouveauté, il s'agit de la "Dark Force". Si vous appuyez sur l
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="Vampire Savior - The Lord Of Vampire">
+	<game name="Vampire Savior - The Lord of Vampire">
 		<id>37417A</id>
 	<locale lang="EN">
 	<title>Vampire Savior - The Lord of Vampire</title>
@@ -1502,7 +1502,7 @@ Enfin, Vampire Savior introduit une petite nouveauté pas forcément indispensab
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="Vampire Savior 2 - The Lord Of Vampire">
+	<game name="Vampire Savior 2 - The Lord of Vampire">
 		<id>37418A</id>
 	<locale lang="EN">
 	<title>Vampire Savior 2 - The Lord of Vampire</title>
@@ -1549,7 +1549,7 @@ Enfin, Vampire Savior 2 continue sur la lancée du premier et utilise la même s
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="X-men Vs. Street Fighter">
+	<game name="X-Men vs. Street Fighter">
 		<id>37420A</id>
 	<locale lang="EN">
 	<title>X-Men vs. Street Fighter</title>
@@ -1582,7 +1582,7 @@ Enfin, Vampire Savior 2 continue sur la lancée du premier et utilise la même s
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="X-men - Children Of The Atom">
+	<game name="X-Men - Children of the Atom">
 		<id>37419A</id>
 	<locale lang="EN">
 	<title>X-Men - Children of the Atom</title>

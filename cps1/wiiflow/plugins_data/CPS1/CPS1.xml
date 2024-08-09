@@ -88,7 +88,7 @@ Le jeu est en japonais, totalement injouable pour ceux ou celles qui ne maîtris
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="Cadillacs And Dinosaurs">
+	<game name="Cadillacs and Dinosaurs">
 		<id>37360A</id>
 	<locale lang="EN">
 	<title>Cadillacs and Dinosaurs</title>
@@ -485,7 +485,7 @@ O jogo foi portado para o Super NES e lançado em 1994. Uma versão emulada do j
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="Knights Of The Round">
+	<game name="Knights of the Round">
 		<id>42020A</id>
 	<locale lang="EN">
 	<title>Knights of the Round</title>
@@ -982,7 +982,7 @@ Le joueur choisit un des quatre aventuriers entre le guerrier, le ninja, l'amazo
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="Quiz Tonosama No Yabou 2 - Zenkoku-ban">
+	<game name="Quiz Tonosama no Yabou 2 - Zenkoku-ban">
 		<id>42606A</id>
 	<locale lang="EN">
 	<title>Quiz Tonosama no Yabou 2 - Zenkoku-ban</title>
@@ -1057,10 +1057,10 @@ O jogo foi seguido de um upgrade chamado "Muscle Bomber Duo: Ultimate Team Battl
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="Street Fighter II' - Hyper Fighting">
+	<game name="Street Fighter II' Turbo - Hyper Fighting">
 		<id>37378A</id>
 	<locale lang="EN">
-	<title>Street Fighter II' - Hyper Fighting</title>
+	<title>Street Fighter II' Turbo - Hyper Fighting</title>
 	<synopsis>Street Fighter II' - Hyper Fighting is the second SFII follow-up. Here's what's new: 
 Gameplay is SIGNIFICANTLY sped up to intensify the pace of the game. 
 More special moves (ie. Chun Li's fireball, Dhalsim's Yoga Teleport) are added for each character except for M. Bison. 
@@ -1356,7 +1356,7 @@ Don't Pull- Um jogo de quebra-cabeça semelhante a jogos como a série Eggerland
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="U.n. Squadron">
+	<game name="U.N. Squadron">
 		<id>43837A</id>
 	<locale lang="EN">
 	<title>U.N. Squadron</title>

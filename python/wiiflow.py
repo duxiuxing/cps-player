@@ -74,6 +74,7 @@ class WiiFlow:
         root = tree.getroot()
 
         for game_elem in root.findall("game"):
+            game_name = game_elem.get("name")
             game_id = ""
             en_title = ""
             zhcn_title = ""
@@ -84,6 +85,10 @@ class WiiFlow:
                     lang = elem.get("lang")
                     if lang == "EN":
                         en_title = elem.find("title").text
+                        if game_name != en_title:
+                            print("英文名不一致")
+                            print(f"\tname     = {game_name}")
+                            print(f"\tEN title = {en_title}")
                     elif lang == "ZHCN":
                         zhcn_title = elem.find("title").text
 
