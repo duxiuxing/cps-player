@@ -6,6 +6,7 @@ import xml.etree.ElementTree as ET
 import zlib
 
 from game_info import GameInfo
+from console_config import ConsoleConfig
 from local_configs import LocalConfigs
 from wiiflow import WiiFlow
 
@@ -53,7 +54,7 @@ def copy_file(src, dst):
         shutil.copy2(src, dst)
 
 
-class CPS:
+class CPS(ConsoleConfig):
     def __init__(self, version_number):
         self.version_number = version_number
         self.zip_crc32_to_game_info = {}
@@ -61,7 +62,7 @@ class CPS:
     def folder_path(self):
         return os.path.join(LocalConfigs.REPOSITORY_FOLDER, f"cps{self.version_number}")
 
-    def plugin_name(self):
+    def wiiflow_plugin_name(self):
         return f"CPS{self.version_number}"
 
     def reset_crc32_to_game_info(self):
@@ -166,7 +167,7 @@ class CPS:
     def check_game_infos(self):
         self.reset_crc32_to_game_info()
 
-        wiiflow = WiiFlow(self.plugin_name())
+        wiiflow = WiiFlow(self)
         wiiflow.init_zip_crc32_to_game_id()
         wiiflow.init_game_id_to_info()
 
@@ -178,7 +179,7 @@ class CPS:
                 id = wiiflow.zip_crc32_to_game_id[zip_crc32]
             else:
                 print(
-                    f"crc32 = {zip_crc32} 不在 {wiiflow.plugin_name}.ini 文件中，zhcn = {game_info.zhcn_title}")
+                    f"crc32 = {zip_crc32} 不在 {self.wiiflow_plugin_name()}.ini 文件中，zhcn = {game_info.zhcn_title}")
                 continue
             if id in wiiflow.game_id_to_info.keys():
                 wii_game_info = wiiflow.game_id_to_info[id]
@@ -186,16 +187,16 @@ class CPS:
                     print("en 属性不匹配")
                     print(f"\t{game_info.en_title} 在 all.xml")
                     print(
-                        f"\t{wii_game_info.en_title} 在 {wiiflow.plugin_name}.xml")
+                        f"\t{wii_game_info.en_title} 在 {self.wiiflow_plugin_name()}.xml")
 
                 if wii_game_info.zhcn_title != game_info.zhcn_title:
                     print("zhcn 属性不匹配")
                     print(f"\t{game_info.zhcn_title} 在 all.xml")
                     print(
-                        f"\t{wii_game_info.zhcn_title} 在 {wiiflow.plugin_name}.xml")
+                        f"\t{wii_game_info.zhcn_title} 在 {self.wiiflow_plugin_name()}.xml")
             else:
                 print(
-                    f"id = {id} 不在 {wiiflow.plugin_name}.xml 文件中，zhcn = {game_info.zhcn_title}")
+                    f"id = {id} 不在 {self.wiiflow_plugin_name()}.xml 文件中，zhcn = {game_info.zhcn_title}")
 
     def export_wii_app(self, files_tuple):
         wii_folder_path = os.path.join(self.folder_path(), "wii")
@@ -214,7 +215,7 @@ class CPS:
 
     def main_menu(self, wii_app_files_tuple):
         while True:
-            print(f"\n\n机种代码：{self.plugin_name()}\n请输入数字序号，选择要执行的操作：")
+            print(f"\n\n机种代码：{self.wiiflow_plugin_name()}\n请输入数字序号，选择要执行的操作：")
             print("\t1. 导入新游戏 CPS.import_new_roms()")
             print("\t2. 检查游戏信息 CPS.check_game_infos()")
             print("\t3. 转换封面图片 WiiFlow.convert_wfc_files()")
@@ -229,13 +230,13 @@ class CPS:
             elif input_value == "2":
                 self.check_game_infos()
             elif input_value == "3":
-                wiiflow = WiiFlow(self.plugin_name())
+                wiiflow = WiiFlow(self)
                 wiiflow.convert_wfc_files()
             elif input_value == "4":
-                wiiflow = WiiFlow(self.plugin_name())
+                wiiflow = WiiFlow(self)
                 wiiflow.export_all()
             elif input_value == "5":
-                wiiflow = WiiFlow(self.plugin_name())
+                wiiflow = WiiFlow(self)
                 wiiflow.export_fake_roms()
             elif input_value == "6":
                 self.export_wii_app(wii_app_files_tuple)
