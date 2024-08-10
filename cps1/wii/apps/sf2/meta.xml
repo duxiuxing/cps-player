@@ -12,7 +12,7 @@
 - Released: 1991
 - Players: 2
 
-* boot.dol is from RA-SS CPS1</long_description>
+* boot.dol is from APP: RA-SS CPS1</long_description>
   <arguments>
     <arg>sd:/roms/cps1</arg>
     <arg>sf2.zip</arg>
