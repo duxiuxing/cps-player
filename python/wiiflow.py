@@ -135,8 +135,18 @@ class WiiFlow:
             print(f"安装文件在 {zip_file_path}")
             return
 
+        # wiiflow
         wiiflow_foler_path = os.path.join(
             self.console_configs.folder_path(), "wiiflow")
+        if not create_folder_if_not_exist(wiiflow_foler_path):
+            print(f"无效文件夹：{wiiflow_foler_path}")
+            return
+
+        # wiiflow\\cache
+        cache_folder_path = os.path.join(wiiflow_foler_path, "cache")
+        if not create_folder_if_not_exist(cache_folder_path):
+            print(f"无效文件夹：{cache_folder_path}")
+            return
 
         cmd_line = f"\"{LocalConfigs.WFC_CONV_EXE}\" \"{wiiflow_foler_path}\""
         print(cmd_line)

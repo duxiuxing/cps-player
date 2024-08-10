@@ -76,7 +76,7 @@ class ConsoleBase(ConsoleConfigs):
                     game_info.zip_title = zip_title
                     self.zip_crc32_to_game_info[zip_crc32] = game_info
 
-    def verify_exist_zip_name_as_crc32(self, zip_title):
+    def verify_default_zip_name_as_crc32(self, zip_title):
         zip_folder_path = os.path.join(
             self.folder_path(), f"roms\\{zip_title}")
         if not os.path.exists(zip_folder_path):
@@ -117,7 +117,6 @@ class ConsoleBase(ConsoleConfigs):
                 continue
 
             zip_title = str(file_name)[:-4]
-            self.verify_exist_zip_name_as_crc32(zip_title)
 
             en_title = ""
             zhcn_title = ""
@@ -138,7 +137,11 @@ class ConsoleBase(ConsoleConfigs):
             xml_elem = ET.SubElement(xml_root, "Game", attrib)
 
             dst_file_path = os.path.join(
-                self.folder_path(), f"roms\\{zip_title}\\{crc32}.zip")
+                self.folder_path(), f"roms\\{zip_title}.zip")
+            if os.path.exists(dst_file_path):
+                self.verify_default_zip_name_as_crc32(zip_title)
+                dst_file_path = os.path.join(
+                    self.folder_path(), f"roms\\{zip_title}\\{crc32}.zip")
             os.rename(file_path, dst_file_path)
             new_roms_count = new_roms_count + 1
 
@@ -209,12 +212,12 @@ class ConsoleBase(ConsoleConfigs):
     def main_menu(self, wii_app_files_tuple):
         while True:
             print(f"\n\n机种代码：{self.wiiflow_plugin_name()}\n请输入数字序号，选择要执行的操作：")
-            print("\t1. 导入新游戏 CPS.import_new_roms()")
-            print("\t2. 检查游戏信息 CPS.check_game_infos()")
+            print("\t1. 导入新游戏 Console.import_new_roms()")
+            print("\t2. 检查游戏信息 Console.check_game_infos()")
             print("\t3. 转换封面图片 WiiFlow.convert_wfc_files()")
             print("\t4. 导出 WiiFlow 的文件 WiiFlow.export_all()")
             print("\t5. 导出空白的.zip文件 WiiFlow.export_fake_roms()")
-            print("\t6. 导出 Wii APP 的文件 CPS.export_wii_app()")
+            print("\t6. 导出 Wii APP 的文件 Console.export_wii_app()")
             print("\t7. 退出程序")
 
             input_value = str(input("Enter the version number: "))
