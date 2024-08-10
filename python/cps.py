@@ -66,7 +66,7 @@ class CPS:
 
     def reset_crc32_to_game_info(self):
         self.zip_crc32_to_game_info.clear()
-        
+
         xml_file_path = os.path.join(
             self.folder_path(), "roms\\all.xml")
         if os.path.exists(xml_file_path):
@@ -101,8 +101,12 @@ class CPS:
         exist_roms_crc32_to_zip = {}
         xml_root = ET.Element("Game-List")
 
-        new_roms_count = 0
         new_roms_folder_path = os.path.join(self.folder_path(), "new_roms")
+        if not os.path.exists(new_roms_folder_path):
+            print(f"无效的文件夹：{new_roms_folder_path}")
+            return
+
+        new_roms_count = 0
         for file_name in os.listdir(new_roms_folder_path):
             file_path = os.path.join(new_roms_folder_path, file_name)
 

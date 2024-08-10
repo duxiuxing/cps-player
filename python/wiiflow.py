@@ -43,7 +43,7 @@ class WiiFlow:
             f"{self.plugin_name}\\wiiflow\\plugins_data\\{self.plugin_name}\\{self.plugin_name}.ini")
 
         if not os.path.exists(ini_file_path):
-            print(f"{ini_file_path} 不存在")
+            print(f"无效的文件：{ini_file_path}")
             return
 
         ini_parser = ConfigParser()
@@ -67,7 +67,7 @@ class WiiFlow:
             f"{self.plugin_name}\\wiiflow\\plugins_data\\{self.plugin_name}\\{self.plugin_name}.xml")
 
         if not os.path.exists(xml_file_path):
-            print(f"{xml_file_path} 不存在")
+            print(f"无效的文件：{xml_file_path}")
             return
 
         tree = ET.parse(xml_file_path)
@@ -103,7 +103,7 @@ class WiiFlow:
             f"{self.plugin_name}\\wiiflow\\wiiflow.xml")
 
         if not os.path.exists(xml_file_path):
-            print(f"{xml_file_path} 不存在")
+            print(f"无效的文件：{xml_file_path}")
             return
 
         tree = ET.parse(xml_file_path)
@@ -121,14 +121,14 @@ class WiiFlow:
                 zip_path = os.path.join(
                     LocalConfigs.REPOSITORY_FOLDER, f"{self.plugin_name}\\roms\\{zip_title}\\{zip_crc32}.zip")
                 if not os.path.exists(zip_path):
-                    print(f"{zip_title}.zip 不存在")
+                    print(f"无效的文件：{zip_path}")
                     continue
 
             self.zip_title_to_path[zip_title] = zip_path
 
     def convert_wfc_files(self):
         if not os.path.exists(LocalConfigs.WFC_CONV_EXE):
-            print("wfc_conv.exe 不存在")
+            print(f"无效的文件：{LocalConfigs.WFC_CONV_EXE}")
             zip_file_path = os.path.join(
                 LocalConfigs.REPOSITORY_FOLDER, "pc-tool\\WFC_conv_0-1.zip")
             print(f"安装文件在 {zip_file_path}")
@@ -166,7 +166,7 @@ class WiiFlow:
             f"{self.plugin_name}\\wiiflow\\plugins_data\\{self.plugin_name}\\{self.plugin_name}.ini")
 
         if not os.path.exists(ini_file_path):
-            print(f"{ini_file_path} 不存在")
+            print(f"无效的文件：{ini_file_path}")
             return
 
         if not verify_folder_exist(LocalConfigs.SDCARD_ROOT):
