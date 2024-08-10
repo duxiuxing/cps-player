@@ -1,7 +1,6 @@
 # -- coding: UTF-8 --
 
-
-class ConsoleConfig:
+class ConsoleConfigs:
     def folder_path(self):
         raise NotImplementedError()
 
