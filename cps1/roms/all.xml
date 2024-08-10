@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Game-List name="cps1" rom-exists="true">
+<Game-List name="all-cps1-roms" rom-exists="true">
     <Game crc32="1137866C" bytes="7136062"
         zip="3wonders"
         en="Three Wonders"

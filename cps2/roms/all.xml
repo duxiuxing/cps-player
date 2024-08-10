@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<Game-List name="cps2" rom-exists="true">
+<Game-List name="all-cps2-roms" rom-exists="true">
     <Game crc32="95ABA6EF" bytes="7837505"
         zip="19xx"
         en="19XX - The War Against Destiny"

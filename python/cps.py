@@ -55,17 +55,20 @@ def copy_file(src, dst):
 
 class CPS:
     def __init__(self, version_number):
-        self.name = f"cps{version_number}"
+        self.version_number = version_number
         self.zip_crc32_to_game_info = {}
 
-    def root_folder_path(self):
-        return os.path.join(LocalConfigs.REPOSITORY_FOLDER, self.name)
+    def folder_path(self):
+        return os.path.join(LocalConfigs.REPOSITORY_FOLDER, f"cps{self.version_number}")
+
+    def plugin_name(self):
+        return f"CPS{self.version_number}"
 
     def init_crc32_to_game_info(self):
         if len(self.zip_crc32_to_game_info) > 0:
             return
         xml_file_path = os.path.join(
-            self.root_folder_path(), f"roms\\{self.name}.xml")
+            self.folder_path(), "roms\\all.xml")
         if os.path.exists(xml_file_path):
             tree = ET.parse(xml_file_path)
             root = tree.getroot()
@@ -80,16 +83,16 @@ class CPS:
                     self.zip_crc32_to_game_info[zip_crc32] = game_info
 
     def verify_exist_zip_name_as_crc32(self, zip_title):
-        folder_path = os.path.join(
-            self.root_folder_path(), f"roms\\{zip_title}")
-        if not os.path.exists(folder_path):
-            os.makedirs(folder_path)
+        zip_folder_path = os.path.join(
+            self.folder_path(), f"roms\\{zip_title}")
+        if not os.path.exists(zip_folder_path):
+            os.makedirs(zip_folder_path)
 
         default_zip_path = os.path.join(
-            self.root_folder_path(), f"roms\\{zip_title}.zip")
+            self.folder_path(), f"roms\\{zip_title}.zip")
         if os.path.exists(default_zip_path):
             dst_zip_path = os.path.join(
-                folder_path, f"{compute_crc32(default_zip_path)}.zip")
+                zip_folder_path, f"{compute_crc32(default_zip_path)}.zip")
             os.rename(default_zip_path, dst_zip_path)
 
     def import_new_roms(self):
@@ -99,8 +102,7 @@ class CPS:
         xml_root = ET.Element("Game-List")
 
         new_roms_count = 0
-        new_roms_folder_path = os.path.join(
-            self.root_folder_path(), "new_roms")
+        new_roms_folder_path = os.path.join(self.folder_path(), "new_roms")
         for file_name in os.listdir(new_roms_folder_path):
             file_path = os.path.join(new_roms_folder_path, file_name)
 
@@ -138,7 +140,7 @@ class CPS:
             xml_elem = ET.SubElement(xml_root, "Game", attrib)
 
             dst_file_path = os.path.join(
-                self.root_folder_path(), f"roms\\{zip_title}\\{crc32}.zip")
+                self.folder_path(), f"roms\\{zip_title}\\{crc32}.zip")
             os.rename(file_path, dst_file_path)
             new_roms_count = new_roms_count + 1
 
@@ -160,7 +162,7 @@ class CPS:
     def check_game_infos(self):
         self.init_crc32_to_game_info()
 
-        wiiflow = WiiFlow(self.name.upper())
+        wiiflow = WiiFlow(self.plugin_name())
         wiiflow.init_zip_crc32_to_game_id()
         wiiflow.init_game_id_to_info()
 
@@ -178,13 +180,13 @@ class CPS:
                 wii_game_info = wiiflow.game_id_to_info[id]
                 if wii_game_info.en_title != game_info.en_title:
                     print("en 属性不匹配")
-                    print(f"\t{game_info.en_title} 在 {self.name}.xml")
+                    print(f"\t{game_info.en_title} 在 all.xml")
                     print(
                         f"\t{wii_game_info.en_title} 在 {wiiflow.plugin_name}.xml")
 
                 if wii_game_info.zhcn_title != game_info.zhcn_title:
                     print("zhcn 属性不匹配")
-                    print(f"\t{game_info.zhcn_title} 在 {self.name}.xml")
+                    print(f"\t{game_info.zhcn_title} 在 all.xml")
                     print(
                         f"\t{wii_game_info.zhcn_title} 在 {wiiflow.plugin_name}.xml")
             else:
@@ -192,7 +194,7 @@ class CPS:
                     f"id = {id} 不在 {wiiflow.plugin_name}.xml 文件中，zhcn = {game_info.zhcn_title}")
 
     def export_wii_app(self, files_tuple):
-        wii_folder_path = os.path.join(self.root_folder_path(), "wii")
+        wii_folder_path = os.path.join(self.folder_path(), "wii")
         for relative_path in files_tuple:
             src_path = os.path.join(wii_folder_path, relative_path)
             dst_path = os.path.join(LocalConfigs.SDCARD_ROOT, relative_path)
@@ -207,15 +209,14 @@ class CPS:
                 copy_file(src_path, dst_path)
 
     def main_menu(self, wii_app_files_tuple):
-        plugin_name = self.name.upper()
         while True:
-            print("\n\n请输入数字序号，选择要执行的操作：")
-            print(f"\t1. 导入新游戏 {self.name}.import_new_roms()")
-            print(f"\t2. 检查游戏信息 {self.name}.check_game_infos()")
+            print(f"\n\n机种代码：{self.plugin_name()}\n请输入数字序号，选择要执行的操作：")
+            print("\t1. 导入新游戏 CPS.import_new_roms()")
+            print("\t2. 检查游戏信息 CPS.check_game_infos()")
             print("\t3. 转换封面图片 WiiFlow.convert_wfc_files()")
             print("\t4. 导出 WiiFlow 的文件 WiiFlow.export_all()")
             print("\t5. 导出空白的.zip文件 WiiFlow.export_fake_roms()")
-            print(f"\t6. 导出 Wii APP 的文件 {self.name}.export_wii_app()")
+            print("\t6. 导出 Wii APP 的文件 CPS.export_wii_app()")
             print("\t7. 退出程序")
 
             input_value = str(input("Enter the version number: "))
@@ -224,13 +225,13 @@ class CPS:
             elif input_value == "2":
                 self.check_game_infos()
             elif input_value == "3":
-                wiiflow = WiiFlow(plugin_name)
+                wiiflow = WiiFlow(self.plugin_name())
                 wiiflow.convert_wfc_files()
             elif input_value == "4":
-                wiiflow = WiiFlow(plugin_name)
+                wiiflow = WiiFlow(self.plugin_name())
                 wiiflow.export_all()
             elif input_value == "5":
-                wiiflow = WiiFlow(plugin_name)
+                wiiflow = WiiFlow(self.plugin_name())
                 wiiflow.export_fake_roms()
             elif input_value == "6":
                 self.export_wii_app(wii_app_files_tuple)
