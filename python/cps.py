@@ -64,9 +64,9 @@ class CPS:
     def plugin_name(self):
         return f"CPS{self.version_number}"
 
-    def init_crc32_to_game_info(self):
-        if len(self.zip_crc32_to_game_info) > 0:
-            return
+    def reset_crc32_to_game_info(self):
+        self.zip_crc32_to_game_info.clear()
+        
         xml_file_path = os.path.join(
             self.folder_path(), "roms\\all.xml")
         if os.path.exists(xml_file_path):
@@ -96,7 +96,7 @@ class CPS:
             os.rename(default_zip_path, dst_zip_path)
 
     def import_new_roms(self):
-        self.init_crc32_to_game_info()
+        self.reset_crc32_to_game_info()
 
         exist_roms_crc32_to_zip = {}
         xml_root = ET.Element("Game-List")
@@ -160,7 +160,7 @@ class CPS:
             tree.write(xml_file_path, encoding="utf-8", xml_declaration=True)
 
     def check_game_infos(self):
-        self.init_crc32_to_game_info()
+        self.reset_crc32_to_game_info()
 
         wiiflow = WiiFlow(self.plugin_name())
         wiiflow.init_zip_crc32_to_game_id()
