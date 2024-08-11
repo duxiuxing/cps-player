@@ -95,7 +95,7 @@ class WiiFlow:
                     lang = elem.get("lang")
                     if lang == "EN":
                         en_title = elem.find("title").text
-                        if game_name != en_title:
+                        if en_title not in game_name.split(" / "):
                             print("英文名不一致")
                             print(f"\tname     = {game_name}")
                             print(f"\tEN title = {en_title}")
@@ -103,6 +103,22 @@ class WiiFlow:
                         zhcn_title = elem.find("title").text
 
             self.game_id_to_info[game_id] = GameInfo(en_title, zhcn_title)
+
+    def find_game_info(self, zip_title, zip_crc32):
+        self.init_zip_crc32_to_game_id()
+        self.init_game_id_to_info()
+
+        game_id = None
+        if zip_title in self.zip_crc32_to_game_id.keys():
+            game_id = self.zip_crc32_to_game_id[zip_title]
+        elif zip_crc32 in self.zip_crc32_to_game_id.keys():
+            game_id = self.zip_crc32_to_game_id[zip_crc32]
+
+        if game_id is not None and game_id in self.game_id_to_info.keys():
+            return self.game_id_to_info[game_id]
+
+        print(f"{zip_title}.zip 不在 {self.console_configs.wiiflow_plugin_name()}.ini 文件中，crc32 = {zip_crc32}")
+        return None
 
     def init_zip_title_to_path(self):
         if len(self.zip_title_to_path) > 0:
