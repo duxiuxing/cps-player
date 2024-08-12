@@ -508,9 +508,9 @@ class WiiFlow:
                     for char in src_line:
                         if len(dst_line) == 0:
                             dst_line = char
-                        elif dst_line[-1] in " 、：，。《》（）":
+                        elif dst_line[-1] in " 、：，。《》（）【】“”":
                             dst_line += char
-                        elif char in " 、：，。《》（）1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ":
+                        elif char in " 、：，。《》（）【】“”1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ":
                             dst_line += char
                         else:
                             dst_line += f" {char}"
