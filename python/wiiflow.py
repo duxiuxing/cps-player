@@ -322,6 +322,13 @@ class WiiFlow:
                 dst_folder_path, f"{zip_file_name}.wfc")
             copy_file_if_not_exist(src_file_path, dst_file_path)
 
+        # SD:\\wiiflow\\cache\\lists
+        # lists 文件夹里都是 WiiFlow 生成的缓存文件，删掉才会重新生成
+        dst_cache_lists_folder_path = os.path.join(
+            dst_cache_folder_path, "lists")
+        if os.path.exists(dst_cache_lists_folder_path):
+            shutil.rmtree(dst_cache_lists_folder_path)
+
     def export_plugins(self):
         if not verify_folder_exist(LocalConfigs.SDCARD_ROOT):
             return
@@ -393,6 +400,12 @@ class WiiFlow:
             if os.path.exists(dst_file_path):
                 os.remove(dst_file_path)
             copy_file_if_not_exist(src_file_path, dst_file_path)
+
+        # gametdb_offsets.bin 是 WiiFlow 生成的缓存文件，删掉才会重新生成
+        gametdb_offsets_bin_path = os.path.join(
+            dst_folder_path, "gametdb_offsets.bin")
+        if os.path.exists(gametdb_offsets_bin_path):
+            os.remove(gametdb_offsets_bin_path)
 
     def export_snapshots(self, zip_parent_folder_path):
         if not verify_folder_exist(LocalConfigs.SDCARD_ROOT):
