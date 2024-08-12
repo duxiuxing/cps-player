@@ -827,7 +827,7 @@ Le mode « Tour du monde » fait voyager le joueur à travers différentes régi
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="Night Warriors - Darkstalkers' Revenge">
+	<game name="Night Warriors - Darkstalkers' Revenge / Vampire Hunter - Darkstalkers' Revenge">
 		<id>44387A</id>
 	<locale lang="EN">
 	<title>Night Warriors - Darkstalkers' Revenge</title>
@@ -1372,7 +1372,7 @@ Super Turbo introduced several new play mechanics to the game system from the pr
 			<control type="gamecube" required="false"/>
 		</input>
 	</game>
-	<game name="Darkstalkers - The Night Warriors">
+	<game name="Darkstalkers - The Night Warriors / Vampire - The Night Warriors">
 		<id>41049A</id>
 	<locale lang="EN">
 	<title>Darkstalkers - The Night Warriors</title>
