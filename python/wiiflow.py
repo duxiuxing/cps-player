@@ -126,7 +126,7 @@ class WiiFlow:
             return
 
         xml_file_path = os.path.join(
-            self.console_configs.folder_path(), "wiiflow\\wiiflow.xml")
+            self.console_configs.folder_path(), "wiiflow\\roms.xml")
 
         if not os.path.exists(xml_file_path):
             print(f"无效的文件：{xml_file_path}")
