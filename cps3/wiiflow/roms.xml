@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Game-List name="wiiflow-roms-cps3">
+    <Game crc32="09565881" bytes="46008575"
+        zip="jojo"
+        en="JoJo's Bizarre Adventure"
+        zhcn="乔乔的奇妙冒险"
+    />
+    <Game crc32="03A8E3D2" bytes="54256796"
+        zip="jojoba"
+        en="JoJo's Bizarre Adventure - Heritage for the Future"
+        zhcn="乔乔的奇妙冒险 未来遗产"
+    />
+    <Game crc32="53E91485" bytes="38374386"
+        zip="redearth"
+        en="Red Earth"
+        zhcn="赤色大地"
+    />
+    <Game crc32="1F8CC35D" bytes="38868517"
+        zip="sfiii"
+        en="Street Fighter III - New Generation"
+        zhcn="街头霸王3 新纪元"
+    />
+    <Game crc32="EF7FA548" bytes="43777198"
+        zip="sfiii2"
+        en="Street Fighter III 2nd Impact - Giant Attack"
+        zhcn="街头霸王3.2 巨型打击"
+    />
+    <Game crc32="83CDA278" bytes="70592155"
+        zip="sfiii3"
+        en="Street Fighter III 3rd Strike - Fight for the Future"
+        zhcn="街头霸王3.3 未来战斗"
+    />
+</Game-List>
