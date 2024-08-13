@@ -57,13 +57,14 @@ def copy_file(src, dst):
 
 class ConsoleBase(ConsoleConfigs):
     def __init__(self):
+        self.wiiflow = None
         self.zip_crc32_to_game_info = {}
 
     def reset_zip_crc32_to_game_info(self):
         self.zip_crc32_to_game_info.clear()
 
         xml_file_path = os.path.join(
-            self.folder_path(), "roms\\all.xml")
+            self.root_folder_path(), "roms\\all.xml")
         if os.path.exists(xml_file_path):
             tree = ET.parse(xml_file_path)
             root = tree.getroot()
@@ -79,12 +80,12 @@ class ConsoleBase(ConsoleConfigs):
 
     def verify_default_zip_name_as_crc32(self, zip_title):
         zip_folder_path = os.path.join(
-            self.folder_path(), f"roms\\{zip_title}")
+            self.root_folder_path(), f"roms\\{zip_title}")
         if not os.path.exists(zip_folder_path):
             os.makedirs(zip_folder_path)
 
         default_zip_path = os.path.join(
-            self.folder_path(), f"roms\\{zip_title}.zip")
+            self.root_folder_path(), f"roms\\{zip_title}.zip")
         if os.path.exists(default_zip_path):
             dst_zip_path = os.path.join(
                 zip_folder_path, f"{compute_crc32(default_zip_path)}.zip")
@@ -92,12 +93,12 @@ class ConsoleBase(ConsoleConfigs):
 
     def import_new_roms(self):
         self.reset_zip_crc32_to_game_info()
-        wiiflow = WiiFlow(self)
 
         exist_zip_crc32_to_name = {}
         new_roms_xml_root = ET.Element("Game-List")
 
-        new_roms_folder_path = os.path.join(self.folder_path(), "new_roms")
+        new_roms_folder_path = os.path.join(
+            self.root_folder_path(), "new_roms")
         if not os.path.exists(new_roms_folder_path):
             print(f"无效的文件夹：{new_roms_folder_path}")
             return
@@ -118,7 +119,7 @@ class ConsoleBase(ConsoleConfigs):
             en_title = ""
             zhcn_title = ""
 
-            wii_game_info = wiiflow.find_game_info(zip_title, zip_crc32)
+            wii_game_info = self.wiiflow.find_game_info(zip_title, zip_crc32)
             if wii_game_info is not None:
                 en_title = wii_game_info.en_title
                 zhcn_title = wii_game_info.zhcn_title
@@ -133,14 +134,14 @@ class ConsoleBase(ConsoleConfigs):
             ET.SubElement(new_roms_xml_root, "Game", attribs)
 
             dst_file_path = os.path.join(
-                self.folder_path(), f"roms\\{zip_title}.zip")
+                self.root_folder_path(), f"roms\\{zip_title}.zip")
             if os.path.exists(dst_file_path):
                 self.verify_default_zip_name_as_crc32(zip_title)
                 dst_file_path = os.path.join(
-                    self.folder_path(), f"roms\\{zip_title}\\{zip_crc32}.zip")
+                    self.root_folder_path(), f"roms\\{zip_title}\\{zip_crc32}.zip")
             else:
                 zip_title_folder_path = os.path.join(
-                    self.folder_path(), f"roms\\{zip_title}")
+                    self.root_folder_path(), f"roms\\{zip_title}")
                 if os.path.exists(zip_title_folder_path):
                     dst_file_path = os.path.join(
                         zip_title_folder_path, f"{zip_crc32}.zip")
@@ -181,26 +182,25 @@ class ConsoleBase(ConsoleConfigs):
 
     def check_game_infos(self):
         self.reset_zip_crc32_to_game_info()
-        wiiflow = WiiFlow(self)
 
         for zip_crc32, game_info in self.zip_crc32_to_game_info.items():
-            wii_game_info = wiiflow.find_game_info(
+            wii_game_info = self.wiiflow.find_game_info(
                 game_info.zip_title, zip_crc32)
             if wii_game_info is not None:
                 if wii_game_info.en_title != game_info.en_title:
                     print("en 属性不匹配")
                     print(f"\t{game_info.en_title} 在 all.xml")
                     print(
-                        f"\t{wii_game_info.en_title} 在 {self.wiiflow_plugin_name()}.xml")
+                        f"\t{wii_game_info.en_title} 在 {self.wiiflow.plugin_name}.xml")
 
                 if wii_game_info.zhcn_title != game_info.zhcn_title:
                     print("zhcn 属性不匹配")
                     print(f"\t{game_info.zhcn_title} 在 all.xml")
                     print(
-                        f"\t{wii_game_info.zhcn_title} 在 {self.wiiflow_plugin_name()}.xml")
+                        f"\t{wii_game_info.zhcn_title} 在 {self.wiiflow.plugin_name}.xml")
 
     def export_wii_app(self, files_tuple):
-        wii_folder_path = os.path.join(self.folder_path(), "wii")
+        wii_folder_path = os.path.join(self.root_folder_path(), "wii")
         for relative_path in files_tuple:
             src_path = os.path.join(wii_folder_path, relative_path)
             dst_path = os.path.join(LocalConfigs.SDCARD_ROOT, relative_path)
@@ -216,7 +216,7 @@ class ConsoleBase(ConsoleConfigs):
 
     def main_menu(self, wii_app_files_tuple):
         while True:
-            print(f"\n\n机种代码：{self.wiiflow_plugin_name()}\n请输入数字序号，选择要执行的操作：")
+            print(f"\n\n机种代码：{self.wiiflow.plugin_name}\n请输入数字序号，选择要执行的操作：")
             print("\t1. 导出空白的.zip文件 WiiFlow.export_fake_roms()")
             print("\t2. 导入新游戏 Console.import_new_roms()")
             print("\t3. 检查游戏信息 Console.check_game_infos()")
@@ -229,24 +229,19 @@ class ConsoleBase(ConsoleConfigs):
 
             input_value = str(input("Enter the version number: "))
             if input_value == "1":
-                wiiflow = WiiFlow(self)
-                wiiflow.export_fake_roms()
+                self.wiiflow.export_fake_roms()
             elif input_value == "2":
                 self.import_new_roms()
             elif input_value == "3":
                 self.check_game_infos()
             elif input_value == "4":
-                wiiflow = WiiFlow(self)
-                wiiflow.convert_wfc_files()
+                self.wiiflow.convert_wfc_files()
             elif input_value == "5":
-                wiiflow = WiiFlow(self)
-                wiiflow.convert_game_synopsis()
+                self.wiiflow.convert_game_synopsis()
             elif input_value == "6":
-                wiiflow = WiiFlow(self)
-                wiiflow.export_all(True)
+                self.wiiflow.export_all(True)
             elif input_value == "7":
-                wiiflow = WiiFlow(self)
-                wiiflow.export_all(False)
+                self.wiiflow.export_all(False)
             elif input_value == "8":
                 self.export_wii_app(wii_app_files_tuple)
             elif input_value == "9":

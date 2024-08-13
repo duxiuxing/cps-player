@@ -36,8 +36,9 @@ def copy_file_if_not_exist(src_file_path, dst_file_path):
 
 
 class WiiFlow:
-    def __init__(self, console_configs):
-        self.console_configs = console_configs
+    def __init__(self, console, plugin_name):
+        self.console = console
+        self.plugin_name = plugin_name
         self.zip_crc32_to_game_id = {}
         self.game_id_to_info = {}
         self.zip_title_to_path = {}
@@ -47,10 +48,9 @@ class WiiFlow:
         if len(self.zip_crc32_to_game_id) > 0:
             return
 
-        plugin_name = self.console_configs.wiiflow_plugin_name()
         ini_file_path = os.path.join(
-            self.console_configs.folder_path(),
-            f"wiiflow\\plugins_data\\{plugin_name}\\{plugin_name}.ini")
+            self.console.root_folder_path(),
+            f"wiiflow\\plugins_data\\{self.plugin_name}\\{self.plugin_name}.ini")
 
         if not os.path.exists(ini_file_path):
             print(f"无效的文件：{ini_file_path}")
@@ -58,9 +58,9 @@ class WiiFlow:
 
         ini_parser = ConfigParser()
         ini_parser.read(ini_file_path)
-        if ini_parser.has_section(plugin_name):
-            for zip_title in ini_parser[plugin_name]:
-                values = ini_parser[plugin_name][zip_title].split("|")
+        if ini_parser.has_section(self.plugin_name):
+            for zip_title in ini_parser[self.plugin_name]:
+                values = ini_parser[self.plugin_name][zip_title].split("|")
                 game_id = values[0]
                 self.zip_crc32_to_game_id[zip_title] = game_id
                 for index in range(1, len(values)):
@@ -73,8 +73,8 @@ class WiiFlow:
             return
 
         xml_file_path = os.path.join(
-            self.console_configs.folder_path(),
-            f"wiiflow\\plugins_data\\{self.console_configs.wiiflow_plugin_name()}\\{self.console_configs.wiiflow_plugin_name()}.xml")
+            self.console.root_folder_path(),
+            f"wiiflow\\plugins_data\\{self.plugin_name}\\{self.plugin_name}.xml")
 
         if not os.path.exists(xml_file_path):
             print(f"无效的文件：{xml_file_path}")
@@ -118,7 +118,7 @@ class WiiFlow:
         if game_id is not None and game_id in self.game_id_to_info.keys():
             return self.game_id_to_info[game_id]
 
-        print(f"{zip_title}.zip 不在 {self.console_configs.wiiflow_plugin_name()}.ini 文件中，crc32 = {zip_crc32}")
+        print(f"{zip_title}.zip 不在 {self.plugin_name}.ini 文件中，crc32 = {zip_crc32}")
         return None
 
     def init_zip_title_to_path(self):
@@ -126,7 +126,7 @@ class WiiFlow:
             return
 
         xml_file_path = os.path.join(
-            self.console_configs.folder_path(), "wiiflow\\roms.xml")
+            self.console.root_folder_path(), "wiiflow\\roms.xml")
 
         if not os.path.exists(xml_file_path):
             print(f"无效的文件：{xml_file_path}")
@@ -142,10 +142,10 @@ class WiiFlow:
                 print(f"crc32 = {zip_crc32} 的元素缺少 zip 属性")
                 continue
             zip_path = os.path.join(
-                self.console_configs.folder_path(), f"roms\\{zip_title}.zip")
+                self.console.root_folder_path(), f"roms\\{zip_title}.zip")
             if not os.path.exists(zip_path):
                 zip_path = os.path.join(
-                    self.console_configs.folder_path(), f"roms\\{zip_title}\\{zip_crc32}.zip")
+                    self.console.root_folder_path(), f"roms\\{zip_title}\\{zip_crc32}.zip")
                 if not os.path.exists(zip_path):
                     print(f"无效的文件：{zip_path}")
                     continue
@@ -162,7 +162,7 @@ class WiiFlow:
 
         # wiiflow
         wiiflow_foler_path = os.path.join(
-            self.console_configs.folder_path(), "wiiflow")
+            self.console.root_folder_path(), "wiiflow")
         if not create_folder_if_not_exist(wiiflow_foler_path):
             print(f"无效文件夹：{wiiflow_foler_path}")
             return
@@ -188,7 +188,7 @@ class WiiFlow:
 
         # SD:\\roms\\<plugin_name>
         dst_zip_parent_folder_path = os.path.join(
-            dst_roms_folder_path, self.console_configs.wiiflow_plugin_name())
+            dst_roms_folder_path, self.plugin_name)
         if not create_folder_if_not_exist(dst_zip_parent_folder_path):
             return
         for zip_title, src_zip_path in self.zip_title_to_path.items():
@@ -198,10 +198,9 @@ class WiiFlow:
 
     # 根据 <plugin_name>.ini 的内容构造创建空白的 .zip 文件
     def export_fake_roms(self):
-        plugin_name = self.console_configs.wiiflow_plugin_name()
         ini_file_path = os.path.join(
-            self.console_configs.folder_path(),
-            f"wiiflow\\plugins_data\\{plugin_name}\\{plugin_name}.ini")
+            self.console.root_folder_path(),
+            f"wiiflow\\plugins_data\\{self.plugin_name}\\{self.plugin_name}.ini")
 
         if not os.path.exists(ini_file_path):
             print(f"无效的文件：{ini_file_path}")
@@ -218,14 +217,14 @@ class WiiFlow:
 
         # SD:\\fake_roms\\<plugin_name>
         dst_zip_parent_folder_path = os.path.join(
-            dst_roms_folder_path, plugin_name)
+            dst_roms_folder_path, self.plugin_name)
         if not create_folder_if_not_exist(dst_zip_parent_folder_path):
             return
 
         ini_parser = ConfigParser()
         ini_parser.read(ini_file_path)
-        if ini_parser.has_section(plugin_name):
-            for zip_title in ini_parser[plugin_name]:
+        if ini_parser.has_section(self.plugin_name):
+            for zip_title in ini_parser[self.plugin_name]:
                 dst_zip_path = os.path.join(
                     dst_zip_parent_folder_path, f"{zip_title}.zip")
                 if not os.path.exists(dst_zip_path):
@@ -247,26 +246,26 @@ class WiiFlow:
         if not create_folder_if_not_exist(dst_boxcovers_folder_path):
             return
 
-        plugin_name = self.console_configs.wiiflow_plugin_name()
         # SD:\\wiiflow\\boxcovers\\blank_covers
         dst_blank_covers_folder_path = os.path.join(
             dst_boxcovers_folder_path, "blank_covers")
         if create_folder_if_not_exist(dst_blank_covers_folder_path):
             src_blank_cover_path = os.path.join(
-                self.console_configs.folder_path(), f"wiiflow\\boxcovers\\blank_covers\\{plugin_name}.png")
+                self.console.root_folder_path(), f"wiiflow\\boxcovers\\blank_covers\\{self.plugin_name}.png")
             dst_blank_cover_path = os.path.join(
-                dst_blank_covers_folder_path, f"{plugin_name}.png")
+                dst_blank_covers_folder_path, f"{self.plugin_name}.png")
             copy_file_if_not_exist(src_blank_cover_path, dst_blank_cover_path)
         else:
             print(f"无效的文件夹：{dst_blank_covers_folder_path}")
 
         # SD:\\wiiflow\\boxcovers\\<plugin_name>
-        dst_folder_path = os.path.join(dst_boxcovers_folder_path, plugin_name)
+        dst_folder_path = os.path.join(
+            dst_boxcovers_folder_path, self.plugin_name)
         if not create_folder_if_not_exist(dst_folder_path):
             return
 
         src_folder_path = os.path.join(
-            self.console_configs.folder_path(), f"wiiflow\\boxcovers\\{plugin_name}")
+            self.console.root_folder_path(), f"wiiflow\\boxcovers\\{self.plugin_name}")
 
         for zip_file_name in os.listdir(zip_parent_folder_path):
             if not fnmatch.fnmatch(zip_file_name, "*.zip"):
@@ -292,27 +291,27 @@ class WiiFlow:
         if not create_folder_if_not_exist(dst_cache_folder_path):
             return
 
-        plugin_name = self.console_configs.wiiflow_plugin_name()
         # SD:\\wiiflow\\cache\\blank_covers
         dst_cache_blank_covers_folder_path = os.path.join(
             dst_cache_folder_path, "blank_covers")
         if create_folder_if_not_exist(dst_cache_blank_covers_folder_path):
             src_cache_blank_cover_path = os.path.join(
-                self.console_configs.folder_path(), f"wiiflow\\cache\\blank_covers\\{plugin_name}.wfc")
+                self.console.root_folder_path(), f"wiiflow\\cache\\blank_covers\\{self.plugin_name}.wfc")
             dst_cache_blank_cover_path = os.path.join(
-                dst_cache_blank_covers_folder_path, f"{plugin_name}.wfc")
+                dst_cache_blank_covers_folder_path, f"{self.plugin_name}.wfc")
             copy_file_if_not_exist(
-                src_cache_blank_cover_path,         dst_cache_blank_cover_path)
+                src_cache_blank_cover_path,
+                dst_cache_blank_cover_path)
         else:
             print(f"无效的文件夹：{dst_cache_blank_covers_folder_path}")
 
         # SD:\\wiiflow\\cache\\<plugin_name>
-        dst_folder_path = os.path.join(dst_cache_folder_path, plugin_name)
+        dst_folder_path = os.path.join(dst_cache_folder_path, self.plugin_name)
         if not create_folder_if_not_exist(dst_folder_path):
             return
 
         src_folder_path = os.path.join(
-            self.console_configs.folder_path(), f"wiiflow\\cache\\{plugin_name}")
+            self.console.root_folder_path(), f"wiiflow\\cache\\{self.plugin_name}")
 
         for zip_file_name in os.listdir(zip_parent_folder_path):
             if not fnmatch.fnmatch(zip_file_name, "*.zip"):
@@ -351,14 +350,13 @@ class WiiFlow:
         if not create_folder_if_not_exist(dst_rsam_folder_path):
             return
 
-        plugin_name = self.console_configs.wiiflow_plugin_name()
         # SD:\\wiiflow\\plugins\\R-Sam\\<plugin_name>
-        dst_folder_path = os.path.join(dst_rsam_folder_path, plugin_name)
+        dst_folder_path = os.path.join(dst_rsam_folder_path, self.plugin_name)
         if not create_folder_if_not_exist(dst_folder_path):
             return
 
         src_folder_path = os.path.join(
-            self.console_configs.folder_path(), f"wiiflow\\plugins\\R-Sam\\{plugin_name}")
+            self.console.root_folder_path(), f"wiiflow\\plugins\\R-Sam\\{self.plugin_name}")
 
         file_tuple = ("boot.dol", "config.ini", "sound.ogg")
         for file in file_tuple:
@@ -384,17 +382,16 @@ class WiiFlow:
         if not create_folder_if_not_exist(dst_plugins_data_folder_path):
             return
 
-        plugin_name = self.console_configs.wiiflow_plugin_name()
         # SD:\\wiiflow\\plugins_data\\<plugin_name>
         dst_folder_path = os.path.join(
-            dst_plugins_data_folder_path, plugin_name)
+            dst_plugins_data_folder_path, self.plugin_name)
         if not create_folder_if_not_exist(dst_folder_path):
             return
 
         src_folder_path = os.path.join(
-            self.console_configs.folder_path(), f"wiiflow\\plugins_data\\{plugin_name}")
+            self.console.root_folder_path(), f"wiiflow\\plugins_data\\{self.plugin_name}")
 
-        file_tuple = (f"{plugin_name}.ini", f"{plugin_name}.xml")
+        file_tuple = (f"{self.plugin_name}.ini", f"{self.plugin_name}.xml")
         for file in file_tuple:
             src_file_path = os.path.join(src_folder_path, file)
             dst_file_path = os.path.join(dst_folder_path, file)
@@ -424,14 +421,14 @@ class WiiFlow:
         if not create_folder_if_not_exist(dst_snapshots_folder_path):
             return
 
-        plugin_name = self.console_configs.wiiflow_plugin_name()
         # SD:\\wiiflow\\snapshots\\<plugin_name>
-        dst_folder_path = os.path.join(dst_snapshots_folder_path, plugin_name)
+        dst_folder_path = os.path.join(
+            dst_snapshots_folder_path, self.plugin_name)
         if not create_folder_if_not_exist(dst_folder_path):
             return
 
         src_folder_path = os.path.join(
-            self.console_configs.folder_path(), f"wiiflow\\snapshots\\{plugin_name}")
+            self.console.root_folder_path(), f"wiiflow\\snapshots\\{self.plugin_name}")
 
         for zip_file_name in os.listdir(zip_parent_folder_path):
             if not fnmatch.fnmatch(zip_file_name, "*.zip"):
@@ -459,11 +456,10 @@ class WiiFlow:
         if not create_folder_if_not_exist(dst_source_menu_folder_path):
             return
 
-        plugin_name = self.console_configs.wiiflow_plugin_name()
         src_png_path = os.path.join(
-            self.console_configs.folder_path(), f"wiiflow\\source_menu\\{plugin_name}.png")
+            self.console.root_folder_path(), f"wiiflow\\source_menu\\{self.plugin_name}.png")
         dst_png_path = os.path.join(
-            dst_source_menu_folder_path, f"{plugin_name}.png")
+            dst_source_menu_folder_path, f"{self.plugin_name}.png")
         copy_file_if_not_exist(src_png_path, dst_png_path)
 
     def export_all(self, with_fake_roms):
@@ -474,12 +470,12 @@ class WiiFlow:
         if with_fake_roms:
             self.export_fake_roms()
             zip_parent_folder_path = os.path.join(
-                LocalConfigs.SDCARD_ROOT, f"fake_roms\\{self.console_configs.wiiflow_plugin_name()}")
+                LocalConfigs.SDCARD_ROOT, f"fake_roms\\{self.plugin_name}")
         else:
             self.init_zip_title_to_path()
             self.export_roms()
             zip_parent_folder_path = os.path.join(
-                LocalConfigs.SDCARD_ROOT, f"roms\\{self.console_configs.wiiflow_plugin_name()}")
+                LocalConfigs.SDCARD_ROOT, f"roms\\{self.plugin_name}")
 
         if with_fake_roms is False:
             self.export_boxcovers(zip_parent_folder_path)
@@ -492,7 +488,7 @@ class WiiFlow:
 
     def convert_game_synopsis(self):
         src_file_path = os.path.join(
-            self.console_configs.folder_path(), "doc\\game_synopsis.md")
+            self.console.root_folder_path(), "doc\\game_synopsis.md")
 
         dst_lines = []
         with open(src_file_path, "r", encoding="utf-8") as src_file:
@@ -519,7 +515,7 @@ class WiiFlow:
                     dst_lines.append(dst_line)
 
         dst_file_path = os.path.join(
-            self.console_configs.folder_path(), "doc\\game_synopsis.wiiflow.md")
+            self.console.root_folder_path(), "doc\\game_synopsis.wiiflow.md")
         with open(dst_file_path, "w", encoding="utf-8") as dst_file:
             for line in dst_lines:
                 dst_file.write(f"{line}\n")
