@@ -102,7 +102,8 @@ class WiiFlow:
                     elif lang == "ZHCN":
                         zhcn_title = elem.find("title").text
 
-            self.game_id_to_info[game_id] = GameInfo(en_title, zhcn_title)
+            self.game_id_to_info[game_id] = GameInfo(
+                en_title=en_title, zhcn_title=zhcn_title)
 
     def find_game_info(self, zip_title, zip_crc32):
         self.init_zip_crc32_to_game_id()

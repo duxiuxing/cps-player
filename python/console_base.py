@@ -69,13 +69,13 @@ class ConsoleBase(ConsoleConfigs):
             root = tree.getroot()
             for element in root.iter():
                 if element.tag == "Game":
-                    zip_crc32 = element.get("crc32").rjust(8, "0")
-                    zip_title = element.get("zip")
-                    en_title = element.get("en")
-                    zhcn_title = element.get("zhcn")
-                    game_info = GameInfo(en_title, zhcn_title)
-                    game_info.zip_title = zip_title
-                    self.zip_crc32_to_game_info[zip_crc32] = game_info
+                    game_info = GameInfo(
+                        zip_crc32=element.get("crc32").rjust(8, "0"),
+                        zip_bytes=element.get("bytes"),
+                        zip_title=element.get("zip"),
+                        en_title=element.get("en"),
+                        zhcn_title=element.get("zhcn"))
+                    self.zip_crc32_to_game_info[game_info.zip_crc32] = game_info
 
     def verify_default_zip_name_as_crc32(self, zip_title):
         zip_folder_path = os.path.join(
@@ -94,8 +94,8 @@ class ConsoleBase(ConsoleConfigs):
         self.reset_zip_crc32_to_game_info()
         wiiflow = WiiFlow(self)
 
-        exist_roms_crc32_to_zip = {}
-        xml_root = ET.Element("Game-List")
+        exist_zip_crc32_to_name = {}
+        new_roms_xml_root = ET.Element("Game-List")
 
         new_roms_folder_path = os.path.join(self.folder_path(), "new_roms")
         if not os.path.exists(new_roms_folder_path):
@@ -110,7 +110,7 @@ class ConsoleBase(ConsoleConfigs):
             zip_file_path = os.path.join(new_roms_folder_path, zip_file_name)
             zip_crc32 = compute_crc32(zip_file_path)
             if zip_crc32 in self.zip_crc32_to_game_info.keys():
-                exist_roms_crc32_to_zip[zip_crc32] = zip_file_name
+                exist_zip_crc32_to_name[zip_crc32] = zip_file_name
                 continue
 
             zip_title = os.path.splitext(zip_file_name)[0]
@@ -123,15 +123,14 @@ class ConsoleBase(ConsoleConfigs):
                 en_title = wii_game_info.en_title
                 zhcn_title = wii_game_info.zhcn_title
 
-            attrib = {
+            attribs = {
                 "crc32": zip_crc32,
                 "bytes": str(os.stat(zip_file_path).st_size),
                 "zip": zip_title,
                 "en": en_title,
                 "zhcn": zhcn_title
             }
-
-            xml_elem = ET.SubElement(xml_root, "Game", attrib)
+            ET.SubElement(new_roms_xml_root, "Game", attribs)
 
             dst_file_path = os.path.join(
                 self.folder_path(), f"roms\\{zip_title}.zip")
@@ -139,11 +138,34 @@ class ConsoleBase(ConsoleConfigs):
                 self.verify_default_zip_name_as_crc32(zip_title)
                 dst_file_path = os.path.join(
                     self.folder_path(), f"roms\\{zip_title}\\{zip_crc32}.zip")
+            else:
+                zip_title_folder_path = os.path.join(
+                    self.folder_path(), f"roms\\{zip_title}")
+                if os.path.exists(zip_title_folder_path):
+                    dst_file_path = os.path.join(
+                        zip_title_folder_path, f"{zip_crc32}.zip")
             os.rename(zip_file_path, dst_file_path)
             new_roms_count = new_roms_count + 1
 
-        for key, value in exist_roms_crc32_to_zip.items():
-            print(f"{value} 已经存在，crc32 = {key}")
+        xml_file_path = os.path.join(new_roms_folder_path, "exist_roms.xml")
+        if os.path.exists(xml_file_path):
+            os.remove(xml_file_path)
+
+        if len(exist_zip_crc32_to_name) > 0:
+            exist_roms_xml_root = ET.Element("Game-List")
+            for zip_crc32, zip_name in exist_zip_crc32_to_name.items():
+                game_info = self.zip_crc32_to_game_info[zip_crc32]
+                attribs = {
+                    "crc32": game_info.zip_crc32,
+                    "bytes": game_info.zip_bytes,
+                    "zip": game_info.zip_title,
+                    "en": game_info.en_title,
+                    "zhcn": game_info.zhcn_title
+                }
+                ET.SubElement(exist_roms_xml_root, "Game", attribs)
+                print(f"{zip_name} 已经存在，crc32 = {zip_crc32}")
+            tree = ET.ElementTree(exist_roms_xml_root)
+            tree.write(xml_file_path, encoding="utf-8", xml_declaration=True)
 
         xml_file_path = os.path.join(new_roms_folder_path, "new_roms.xml")
         if os.path.exists(xml_file_path):
@@ -154,7 +176,7 @@ class ConsoleBase(ConsoleConfigs):
             return
         else:
             print(f"发现 {new_roms_count} 个新游戏")
-            tree = ET.ElementTree(xml_root)
+            tree = ET.ElementTree(new_roms_xml_root)
             tree.write(xml_file_path, encoding="utf-8", xml_declaration=True)
 
     def check_game_infos(self):
