@@ -1,8 +1,8 @@
 # -- coding: UTF-8 --
 
 from cps import CPS
-from main_menu import MainMenu
 from export_wii_apps import ExportWiiApps
+from main_menu import MainMenu
 
 
 wii_app_files_tuple = (
@@ -20,6 +20,7 @@ wii_app_files_tuple = (
     "wad\\Street Fighter II [SF21].zhtw.wad",
     "wad\\Street Fighter II CE [SF22].zhtw.wad"
 )
+
 
 MainMenu.console = CPS(1)
 MainMenu.init_default_cmd_handlers()

@@ -1,8 +1,9 @@
 # -- coding: UTF-8 --
 
 from cps import CPS
-from main_menu import MainMenu
 from export_wii_apps import ExportWiiApps
+from main_menu import MainMenu
+
 
 wii_app_files_tuple = (
     "apps\\ra-cps3\\overlays",
@@ -13,6 +14,7 @@ wii_app_files_tuple = (
     "wad\\ra-cps3\\R-Sam-CPS3-White [C3LR].zhtw.wad",
     "wad\\ra-cps3\\R-Sam-CPS3-Yellow [C3LR].zhtw.wad"
 )
+
 
 MainMenu.console = CPS(3)
 MainMenu.init_default_cmd_handlers()
