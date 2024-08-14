@@ -1,6 +1,7 @@
 # -- coding: UTF-8 --
 
 import os
+
 from console_base import ConsoleBase
 from local_configs import LocalConfigs
 from wiiflow import WiiFlow

@@ -1,6 +1,9 @@
 # -- coding: UTF-8 --
 
 from cps import CPS
+from main_menu import MainMenu
+from export_wii_apps import ExportWiiApps
+
 
 wii_app_files_tuple = (
     "apps\\ra-cps1\\boot.dol",
@@ -18,5 +21,7 @@ wii_app_files_tuple = (
     "wad\\Street Fighter II CE [SF22].zhtw.wad"
 )
 
-cps1 = CPS(1)
-cps1.main_menu(wii_app_files_tuple)
+MainMenu.console = CPS(1)
+MainMenu.add_default_cmd_handlers()
+MainMenu.add_cmd_handler(ExportWiiApps(wii_app_files_tuple))
+MainMenu.show()

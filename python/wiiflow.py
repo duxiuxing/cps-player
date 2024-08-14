@@ -187,13 +187,15 @@ class WiiFlow:
             return
 
         # SD:\\roms\\<plugin_name>
-        dst_zip_parent_folder_path = os.path.join(
+        roms_plugin_name_folder_path = os.path.join(
             dst_roms_folder_path, self.plugin_name)
-        if not create_folder_if_not_exist(dst_zip_parent_folder_path):
+        if not create_folder_if_not_exist(roms_plugin_name_folder_path):
             return
+
+        self.init_zip_title_to_path()
         for zip_title, src_zip_path in self.zip_title_to_path.items():
             dst_zip_path = os.path.join(
-                dst_zip_parent_folder_path, f"{zip_title}.zip")
+                roms_plugin_name_folder_path, f"{zip_title}.zip")
             copy_file_if_not_exist(src_zip_path, dst_zip_path)
 
     # 根据 <plugin_name>.ini 的内容构造创建空白的 .zip 文件
@@ -209,16 +211,16 @@ class WiiFlow:
         if not verify_folder_exist(LocalConfigs.SDCARD_ROOT):
             return
 
-        # SD:\\fake_roms
+        # SD:\\roms
         dst_roms_folder_path = os.path.join(
-            LocalConfigs.SDCARD_ROOT, "fake_roms")
+            LocalConfigs.SDCARD_ROOT, "roms")
         if not create_folder_if_not_exist(dst_roms_folder_path):
             return
 
-        # SD:\\fake_roms\\<plugin_name>
-        dst_zip_parent_folder_path = os.path.join(
+        # SD:\\roms\\<plugin_name>
+        roms_plugin_name_folder_path = os.path.join(
             dst_roms_folder_path, self.plugin_name)
-        if not create_folder_if_not_exist(dst_zip_parent_folder_path):
+        if not create_folder_if_not_exist(roms_plugin_name_folder_path):
             return
 
         ini_parser = ConfigParser()
@@ -226,11 +228,11 @@ class WiiFlow:
         if ini_parser.has_section(self.plugin_name):
             for zip_title in ini_parser[self.plugin_name]:
                 dst_zip_path = os.path.join(
-                    dst_zip_parent_folder_path, f"{zip_title}.zip")
+                    roms_plugin_name_folder_path, f"{zip_title}.zip")
                 if not os.path.exists(dst_zip_path):
                     open(dst_zip_path, "w").close()
 
-    def export_boxcovers(self, zip_parent_folder_path):
+    def export_png_boxcovers(self):
         if not verify_folder_exist(LocalConfigs.SDCARD_ROOT):
             return
 
@@ -267,16 +269,18 @@ class WiiFlow:
         src_folder_path = os.path.join(
             self.console.root_folder_path(), f"wiiflow\\boxcovers\\{self.plugin_name}")
 
-        for zip_file_name in os.listdir(zip_parent_folder_path):
-            if not fnmatch.fnmatch(zip_file_name, "*.zip"):
+        roms_plugin_name_folder_path = os.path.join(
+            LocalConfigs.SDCARD_ROOT, f"roms\\{self.plugin_name}")
+        for zip_name in os.listdir(roms_plugin_name_folder_path):
+            if not fnmatch.fnmatch(zip_name, "*.zip"):
                 continue
             src_png_path = os.path.join(
-                src_folder_path, f"{zip_file_name}.png")
+                src_folder_path, f"{zip_name}.png")
             dst_png_path = os.path.join(
-                dst_folder_path, f"{zip_file_name}.png")
+                dst_folder_path, f"{zip_name}.png")
             copy_file_if_not_exist(src_png_path, dst_png_path)
 
-    def export_cache(self, zip_parent_folder_path):
+    def export_cache(self):
         if not verify_folder_exist(LocalConfigs.SDCARD_ROOT):
             return
 
@@ -313,13 +317,15 @@ class WiiFlow:
         src_folder_path = os.path.join(
             self.console.root_folder_path(), f"wiiflow\\cache\\{self.plugin_name}")
 
-        for zip_file_name in os.listdir(zip_parent_folder_path):
-            if not fnmatch.fnmatch(zip_file_name, "*.zip"):
+        roms_plugin_name_folder_path = os.path.join(
+            LocalConfigs.SDCARD_ROOT, f"roms\\{self.plugin_name}")
+        for zip_name in os.listdir(roms_plugin_name_folder_path):
+            if not fnmatch.fnmatch(zip_name, "*.zip"):
                 continue
             src_file_path = os.path.join(
-                src_folder_path, f"{zip_file_name}.wfc")
+                src_folder_path, f"{zip_name}.wfc")
             dst_file_path = os.path.join(
-                dst_folder_path, f"{zip_file_name}.wfc")
+                dst_folder_path, f"{zip_name}.wfc")
             copy_file_if_not_exist(src_file_path, dst_file_path)
 
         # SD:\\wiiflow\\cache\\lists
@@ -329,7 +335,7 @@ class WiiFlow:
         if os.path.exists(dst_cache_lists_folder_path):
             shutil.rmtree(dst_cache_lists_folder_path)
 
-    def export_plugins(self):
+    def export_plugin(self):
         if not verify_folder_exist(LocalConfigs.SDCARD_ROOT):
             return
 
@@ -405,7 +411,7 @@ class WiiFlow:
         if os.path.exists(gametdb_offsets_bin_path):
             os.remove(gametdb_offsets_bin_path)
 
-    def export_snapshots(self, zip_parent_folder_path):
+    def export_snapshots(self):
         if not verify_folder_exist(LocalConfigs.SDCARD_ROOT):
             return
 
@@ -430,7 +436,9 @@ class WiiFlow:
         src_folder_path = os.path.join(
             self.console.root_folder_path(), f"wiiflow\\snapshots\\{self.plugin_name}")
 
-        for zip_file_name in os.listdir(zip_parent_folder_path):
+        roms_plugin_name_folder_path = os.path.join(
+            LocalConfigs.SDCARD_ROOT, f"roms\\{self.plugin_name}")
+        for zip_file_name in os.listdir(roms_plugin_name_folder_path):
             if not fnmatch.fnmatch(zip_file_name, "*.zip"):
                 continue
             png_title = os.path.splitext(zip_file_name)[0]
@@ -461,30 +469,6 @@ class WiiFlow:
         dst_png_path = os.path.join(
             dst_source_menu_folder_path, f"{self.plugin_name}.png")
         copy_file_if_not_exist(src_png_path, dst_png_path)
-
-    def export_all(self, with_fake_roms):
-        if not verify_folder_exist(LocalConfigs.SDCARD_ROOT):
-            return
-
-        zip_parent_folder_path = ""
-        if with_fake_roms:
-            self.export_fake_roms()
-            zip_parent_folder_path = os.path.join(
-                LocalConfigs.SDCARD_ROOT, f"fake_roms\\{self.plugin_name}")
-        else:
-            self.init_zip_title_to_path()
-            self.export_roms()
-            zip_parent_folder_path = os.path.join(
-                LocalConfigs.SDCARD_ROOT, f"roms\\{self.plugin_name}")
-
-        if with_fake_roms is False:
-            self.export_boxcovers(zip_parent_folder_path)
-
-        self.export_cache(zip_parent_folder_path)
-        self.export_plugins()
-        self.export_plugins_data()
-        self.export_snapshots(zip_parent_folder_path)
-        self.export_source_menu()
 
     def convert_game_synopsis(self):
         src_file_path = os.path.join(

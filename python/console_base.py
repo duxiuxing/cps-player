@@ -20,41 +20,6 @@ def compute_crc32(file_path):
         return crc32.rjust(8, "0")
 
 
-def create_folder_if_not_exists(folder_full_path):
-    folder_path = ""
-    for folder_name in folder_full_path.split("\\"):
-        if folder_path == "":
-            folder_path = folder_name
-            if not os.path.exists(folder_path):
-                return False
-        else:
-            if not os.path.exists(folder_path):
-                return False
-            folder_path = f"{folder_path}\\{folder_name}"
-            if not os.path.exists(folder_path):
-                os.mkdir(folder_path)
-    return os.path.exists(folder_full_path)
-
-
-def copy_folder(src, dst):
-    if not create_folder_if_not_exists(dst):
-        return
-    for item in os.listdir(src):
-        s = os.path.join(src, item)
-        d = os.path.join(dst, item)
-        if os.path.isdir(s):
-            copy_folder(s, d)
-        elif not os.path.exists(d):
-            shutil.copy2(s, d)
-
-
-def copy_file(src, dst):
-    if not create_folder_if_not_exists(os.path.dirname(dst)):
-        return
-    if not os.path.exists(dst):
-        shutil.copy2(src, dst)
-
-
 class ConsoleBase(ConsoleConfigs):
     def __init__(self):
         self.wiiflow = None
@@ -180,7 +145,7 @@ class ConsoleBase(ConsoleConfigs):
             tree = ET.ElementTree(new_roms_xml_root)
             tree.write(xml_file_path, encoding="utf-8", xml_declaration=True)
 
-    def check_game_infos(self):
+    def check_exist_games_infos(self):
         self.reset_zip_crc32_to_game_info()
 
         for zip_crc32, game_info in self.zip_crc32_to_game_info.items():
@@ -198,51 +163,3 @@ class ConsoleBase(ConsoleConfigs):
                     print(f"\t{game_info.zhcn_title} 在 all.xml")
                     print(
                         f"\t{wii_game_info.zhcn_title} 在 {self.wiiflow.plugin_name}.xml")
-
-    def export_wii_app(self, files_tuple):
-        wii_folder_path = os.path.join(self.root_folder_path(), "wii")
-        for relative_path in files_tuple:
-            src_path = os.path.join(wii_folder_path, relative_path)
-            dst_path = os.path.join(LocalConfigs.SDCARD_ROOT, relative_path)
-
-            if not os.path.exists(src_path):
-                print(f"源文件缺失：{src_path}")
-                continue
-
-            if os.path.isdir(src_path):
-                copy_folder(src_path, dst_path)
-            elif os.path.isfile(src_path):
-                copy_file(src_path, dst_path)
-
-    def main_menu(self, wii_app_files_tuple):
-        while True:
-            print(f"\n\n机种代码：{self.wiiflow.plugin_name}\n请输入数字序号，选择要执行的操作：")
-            print("\t1. 导出空白的.zip文件 WiiFlow.export_fake_roms()")
-            print("\t2. 导入新游戏 Console.import_new_roms()")
-            print("\t3. 检查游戏信息 Console.check_game_infos()")
-            print("\t4. 转换封面图片 WiiFlow.convert_wfc_files()")
-            print("\t5. 转换游戏摘要 WiiFlow.convert_game_synopsis()")
-            print("\t6. 导出 WiiFlow 的演示文件 WiiFlow.export_all(with_fake_roms = True)")
-            print("\t7. 导出 WiiFlow 的发布文件 WiiFlow.export_all(with_real_roms = False)")
-            print("\t8. 导出 Wii APP 的文件 Console.export_wii_app()")
-            print("\t9. 退出程序")
-
-            input_value = str(input("Enter the version number: "))
-            if input_value == "1":
-                self.wiiflow.export_fake_roms()
-            elif input_value == "2":
-                self.import_new_roms()
-            elif input_value == "3":
-                self.check_game_infos()
-            elif input_value == "4":
-                self.wiiflow.convert_wfc_files()
-            elif input_value == "5":
-                self.wiiflow.convert_game_synopsis()
-            elif input_value == "6":
-                self.wiiflow.export_all(True)
-            elif input_value == "7":
-                self.wiiflow.export_all(False)
-            elif input_value == "8":
-                self.export_wii_app(wii_app_files_tuple)
-            elif input_value == "9":
-                break
