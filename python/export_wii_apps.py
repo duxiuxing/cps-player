@@ -9,24 +9,33 @@ from main_menu import CmdHandler
 from main_menu import MainMenu
 
 
-def create_folder_if_not_exists(folder_full_path):
+def verify_folder_exist_ex(folder_full_path):
+    # 判断指定文件夹是否存在，如果不存在则逐级创建
+    # Args:
+    #     folder_path (str): 待判断的文件夹路径，如果父文件夹不存在会逐级创建
+    # Returns:
+    #     bool: 如果文件夹存在或创建成功，则返回 True，否则返回 False
     folder_path = ""
     for folder_name in folder_full_path.split("\\"):
         if folder_path == "":
             folder_path = folder_name
-            if not os.path.exists(folder_path):
+            if not os.path.isdir(folder_path):
                 return False
         else:
-            if not os.path.exists(folder_path):
+            if not os.path.isdir(folder_path):
                 return False
             folder_path = f"{folder_path}\\{folder_name}"
-            if not os.path.exists(folder_path):
+            if not os.path.isdir(folder_path):
                 os.mkdir(folder_path)
-    return os.path.exists(folder_full_path)
+    return os.path.isdir(folder_full_path)
 
 
 def copy_folder(src, dst):
-    if not create_folder_if_not_exists(dst):
+    # 用递归的方式，复制文件夹
+    # Args:
+    #     src (str): 源文件夹路径
+    #     dst (str): 目标文件夹路径
+    if not verify_folder_exist_ex(dst):
         return
     for item in os.listdir(src):
         s = os.path.join(src, item)
@@ -38,7 +47,11 @@ def copy_folder(src, dst):
 
 
 def copy_file(src, dst):
-    if not create_folder_if_not_exists(os.path.dirname(dst)):
+    # 复制文件
+    # Args:
+    #     src (str): 源文件路径
+    #     dst (str): 目标文件路径，如果父文件夹不存在会逐级创建
+    if not verify_folder_exist_ex(os.path.dirname(dst)):
         return
     if not os.path.exists(dst):
         shutil.copy2(src, dst)

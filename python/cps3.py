@@ -15,6 +15,6 @@ wii_app_files_tuple = (
 )
 
 MainMenu.console = CPS(3)
-MainMenu.add_default_cmd_handlers()
+MainMenu.init_default_cmd_handlers()
 MainMenu.add_cmd_handler(ExportWiiApps(wii_app_files_tuple))
 MainMenu.show()

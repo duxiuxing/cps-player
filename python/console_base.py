@@ -13,6 +13,11 @@ from wiiflow import WiiFlow
 
 
 def compute_crc32(file_path):
+    # 计算指定文件的 CRC32 值
+    # Args:
+    #     file_path (str): 文件路径，通常是 .zip 格式的 ROM 文件
+    # Returns:
+    #     str: 文件的 CRC32 值，八位大写十六进制字符串
     with open(file_path, 'rb') as file:
         data = file.read()
         crc = zlib.crc32(data)
@@ -22,10 +27,19 @@ def compute_crc32(file_path):
 
 class ConsoleBase(ConsoleConfigs):
     def __init__(self):
+        # WiiFow 类型的实例，在子类的构造函数中创建。
         self.wiiflow = None
+
+        # CRC32 值为键，GameInfo 为值的字典
+        # 内容来自 roms\\all.xml
+        # 读取操作在 self.reset_zip_crc32_to_game_info() 中实现
         self.zip_crc32_to_game_info = {}
 
     def reset_zip_crc32_to_game_info(self):
+        # 本函数执行的操作如下：
+        # 1. 清空 self.zip_crc32_to_game_info
+        # 2. 读取 roms\\all.xml
+        # 3. 重新填充 self.zip_crc32_to_game_info
         self.zip_crc32_to_game_info.clear()
 
         xml_file_path = os.path.join(
@@ -43,7 +57,16 @@ class ConsoleBase(ConsoleConfigs):
                         zhcn_title=element.get("zhcn"))
                     self.zip_crc32_to_game_info[game_info.zip_crc32] = game_info
 
-    def verify_default_zip_name_as_crc32(self, zip_title):
+    def verify_zip_file_name_as_crc32(self, zip_title):
+        # 以《1941》这个游戏的 ROM 文件（.zip 格式）为例：
+        # 情况1. 当游戏和 ROM 文件一一对应时，文件路径是：cps-player\\cps1\\roms\\1941.zip
+        # 情况2. 当游戏对应的 ROM 文件不止一个时，需要先创建一个 1941 的文件夹，然后把
+        #        不同的ROM 文件以 CRC32 值命名，放到这个文件夹里，例如：
+        #          - roms\\1941\\64E58DC3.zip
+        #          - roms\\1941\\8C733532.zip
+        #          - roms\\1941\\9DA9C6D9.zip
+        #
+        # 本函数仅在 self.import_new_roms() 中调用，用来把情况1的 ROM 文件按照情况2的规则重命名
         zip_folder_path = os.path.join(
             self.root_folder_path(), f"roms\\{zip_title}")
         if not os.path.exists(zip_folder_path):
@@ -57,6 +80,10 @@ class ConsoleBase(ConsoleConfigs):
             os.rename(default_zip_path, dst_zip_path)
 
     def import_new_roms(self):
+        # 本函数用于从 new_roms 文件夹里导入新的 ROM 文件
+        # 1. 新文件会被转移到 roms 文件夹，新文件的 GameInfo 会被
+        #    写入 new_roms.xml，暂时需要进一步手动合入 roms\\all.xml；
+        # 2. 已经有的 ROM 文件不会被转移，它们的 GameInfo 会被写入 exist_roms.xml
         self.reset_zip_crc32_to_game_info()
 
         exist_zip_crc32_to_name = {}
@@ -101,7 +128,7 @@ class ConsoleBase(ConsoleConfigs):
             dst_file_path = os.path.join(
                 self.root_folder_path(), f"roms\\{zip_title}.zip")
             if os.path.exists(dst_file_path):
-                self.verify_default_zip_name_as_crc32(zip_title)
+                self.verify_zip_file_name_as_crc32(zip_title)
                 dst_file_path = os.path.join(
                     self.root_folder_path(), f"roms\\{zip_title}\\{zip_crc32}.zip")
             else:
@@ -146,6 +173,8 @@ class ConsoleBase(ConsoleConfigs):
             tree.write(xml_file_path, encoding="utf-8", xml_declaration=True)
 
     def check_exist_games_infos(self):
+        # WiiFlow 里有当前机种所有游戏的详细信息，本函数用于检查 roms\\all.xml 里
+        # 的游戏中英文名称和 WiiFlow 里的是否一致，如果不一致则打印出来
         self.reset_zip_crc32_to_game_info()
 
         for zip_crc32, game_info in self.zip_crc32_to_game_info.items():
@@ -153,13 +182,13 @@ class ConsoleBase(ConsoleConfigs):
                 game_info.zip_title, zip_crc32)
             if wii_game_info is not None:
                 if wii_game_info.en_title != game_info.en_title:
-                    print("en 属性不匹配")
+                    print("en 属性不一致")
                     print(f"\t{game_info.en_title} 在 all.xml")
                     print(
                         f"\t{wii_game_info.en_title} 在 {self.wiiflow.plugin_name}.xml")
 
                 if wii_game_info.zhcn_title != game_info.zhcn_title:
-                    print("zhcn 属性不匹配")
+                    print("zhcn 属性不一致")
                     print(f"\t{game_info.zhcn_title} 在 all.xml")
                     print(
                         f"\t{wii_game_info.zhcn_title} 在 {self.wiiflow.plugin_name}.xml")

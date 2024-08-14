@@ -29,7 +29,7 @@ class ImportNewRoms(CmdHandler):
 
 class CheckExistGamesInfos(CmdHandler):
     def __init__(self):
-        super().__init__("检查 roms\\all.xml 文件里的游戏信息")
+        super().__init__("检查 roms\\all.xml 中的游戏信息")
 
     def run(self):
         MainMenu.console.check_exist_games_infos()
@@ -88,6 +88,7 @@ class ExportPngCoversToWiiSdCard(CmdHandler):
     def run(self):
         MainMenu.console.wiiflow.export_png_boxcovers()
 
+
 class MainMenu:
     console = None
     cmd_handler_list = {}
@@ -98,7 +99,7 @@ class MainMenu:
         MainMenu.cmd_handler_list[str(key)] = cmd_handler
 
     @staticmethod
-    def add_default_cmd_handlers():
+    def init_default_cmd_handlers():
         MainMenu.add_cmd_handler(ImportNewRoms())
         MainMenu.add_cmd_handler(CheckExistGamesInfos())
         MainMenu.add_cmd_handler(ConvertWfcFiles())
