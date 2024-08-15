@@ -14,7 +14,7 @@
 
 * boot.dol is from APP: RA-SS CPS1</long_description>
   <arguments>
-    <arg>sd:/roms/cps1</arg>
+    <arg>sd:/roms/CPS1</arg>
     <arg>sf2.zip</arg>
     <arg>sd:/private/C1MOD/boot.dol.cfg</arg>
   </arguments>
