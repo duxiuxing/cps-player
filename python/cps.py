@@ -14,4 +14,4 @@ class CPS(ConsoleBase):
         self.wiiflow = WiiFlow(self, f"CPS{self.version_number}")
 
     def root_folder_path(self):
-        return os.path.join(LocalConfigs.REPOSITORY_FOLDER, f"cps{self.version_number}")
+        return os.path.join(LocalConfigs.repository_folder_path(), f"cps{self.version_number}")
