@@ -4,7 +4,7 @@
 class LocalConfigs:
     @staticmethod
     def repository_folder_path():
-        return "D:\\workspace\\github\\duxiuxing\\neogeo-player"
+        return "D:\\workspace\\github\\duxiuxing\\cps-player"
 
     @staticmethod
     def sd_path():
